@@ -131,3 +131,7 @@ dmypy.json
 
 # Text Editors in IDE
 .idea/
+
+
+# Database
+db.sqlite3
