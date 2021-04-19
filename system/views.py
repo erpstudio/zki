@@ -1,5 +1,7 @@
-from django.shortcuts import render
+from django.views.generic import CreateView
+from models import Inventory
 
-# Create your views here.
-def index(request):
-    return render(request, 'inventory/index.html')
+
+class InventoryCreateView(CreateView):
+    model = Inventory
+    fields = ('name', 'unit', 'category', 'purchase_price')

@@ -37,9 +37,16 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    "django_forms_bootstrap",
+    'crispy_forms',
+    'sweetify',
     'system',
     'settings',
 ]
+
+SWEETIFY_SWEETALERT_LIBRARY = 'sweetalert2'
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -113,7 +120,7 @@ LANGUAGES=(
     ('en', _('English')),
     ('ur', _('Urdu')),
 )
-LANGUAGE_CODE = 'en'
+LANGUAGE_CODE = 'ur'
 
 TIME_ZONE = 'UTC'
 
