@@ -39,12 +39,15 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     "django_forms_bootstrap",
     'crispy_forms',
+    'django_tables2',
+    'table',
     'sweetify',
     'system',
     'settings',
 ]
 
 SWEETIFY_SWEETALERT_LIBRARY = 'sweetalert2'
+DJANGO_TABLES2_TEMPLATE = "django_tables2/datatable.html"
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 

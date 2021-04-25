@@ -7,8 +7,6 @@
 
 {% block content %}
 
-{{ context }}
-
 {% for key, item in page.items %}
     {% if item.type == "form" %}
         {% include 'layout/form_card.html' with card=item %}

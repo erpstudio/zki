@@ -2,28 +2,49 @@
 {% load i18n %}
 <div class="row">
     <div class="col-12">
-        <div class="card card-primary">
+        <div class="card card-dark {% if card.status == 'hide' %} collapsed-card {% else %} show {% endif %}">
             <div class="card-header">
                 <h3 class="card-title" style="float:right;">{{ card.title }}</h3>
                 <div class="card-tools" style="float:left;">
-                    <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
+                    <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                        <i class="fas {% if card.status == 'hide' %}  fa-plus {% else %} fa-minus {% endif %}"></i></button>
                     <button type="button" class="btn btn-tool" data-card-widget="maximize"><i class="fas fa-expand"></i></button>
+                    {% for key, item in card.nav_links.items %}
+                         <a type="button" href="{% url item.link %}" class="btn btn-primary" >{{ item.label }}</a>
+                    {% endfor %}
                 </div>
             </div>
             <!-- card-body -->
-            <div class="card-body">
-                <form role="form" method="post" action={% url card.action %}>
+            <div class="card-body collapsed">
+            {% if card.form %}
+                {% if card.record_id %}
+                    <form role="form" method="post" action={% url card.action id=card.record_id %}>
+                {% else %}
+                    <form role="form" method="post" action={% url card.action%}>
+                {% endif %}
+                
                     {% csrf_token %}
                     {% comment %} {{ card.form|crispy }} {% endcomment %}
                      <div class="row">
                     {% for field in card.form %}
                         <div class="col-sm-6">
+                        {{ field.source }}
                             {{ field|as_crispy_field }}
                         </div>
                     {% endfor %}
                     </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <button type="submit" class="btn btn-dark">Submit</button>
+                        </div>
+                    </div>
                     {% comment %} {% crispy card.form %} {% endcomment %}
                 </form>
+                {% else %}
+                <div class="alert alert-light text-center">
+                   {% trans "Empty Card" %}
+                </div>
+            {% endif %}
             </div>
             <!-- /.card-body -->
             <div class="card-footer">

@@ -24,7 +24,7 @@ class Employee(models.Model):
 ## Vendors
 class Vendor(models.Model):
     name = models.CharField(max_length=30, verbose_name=_("Name"))
-    father_name = models.CharField(max_length=30, null=True, verbose_name=_("Address"))
+    father_name = models.CharField(max_length=30, null=True, verbose_name=_("Father Name"))
     cnic = models.CharField(max_length=30, null=True, verbose_name=_("CNIC"))
     mobile = models.CharField(max_length=30, null=True, verbose_name=_("Mobile"))
     address = models.CharField(max_length=30, null=True, verbose_name=_("Address"))

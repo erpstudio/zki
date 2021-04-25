@@ -5,13 +5,23 @@
 {{ page.page_title }}
 {% endblock page_title %}
 
+{% block nav_links %}
+    {% for key, item in page.nav_links.items %}
+            <a type="button" href="{% url item.link %}" class="btn btn-primary" >{{ item.label }}</a>
+    {% endfor %}
+{% endblock nav_links %}
+
 {% block content %}
-
-{{ context }}
-
+{{ test.a }}
 {% for key, item in page.items %}
-    {% if item.type == "form" %}
+    {% if item.type == "form" and item.status != "disable" %}
         {% include 'layout/include/form_card.html' with card=item %}
+    {% endif %}
+    {% if item.type == "table" and item.status != "disable" %}
+        {% include 'layout/include/table_card.html' with card=item %}
+    {% endif %}
+    {% if item.type == "profile" and item.status != "disable" %}
+        {% include 'layout/include/profile_card.html' with card=item %}
     {% endif %}
 
 {% endfor %}
