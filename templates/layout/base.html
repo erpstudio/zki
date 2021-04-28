@@ -119,7 +119,15 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="{% url 'inventory.index' %}" class="nav-link">
+            <a href="{% url 'customer.list' %}" class="nav-link">
+              <i class="nav-icon fas fa-user"></i>
+              <p>
+                {% trans 'Customer' %}
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{% url 'inventory.list' %}" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
               <p>
                 {% trans 'Inventory' %}
@@ -127,7 +135,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="{% url 'vendor.index' %}" class="nav-link">
+            <a href="{% url 'vendor.list' %}" class="nav-link">
               <i class="nav-icon fas fa-address-book"></i>
               <p>
                 {% trans 'Vendor' %}
@@ -135,7 +143,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="{% url 'employee.index' %}" class="nav-link">
+            <a href="{% url 'employee.list' %}" class="nav-link">
               <i class="nav-icon fas fa-address-book"></i>
               <p>
                 {% trans 'Employee' %}
@@ -153,13 +161,13 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="pages/UI/general.html" class="nav-link">
+                <a href="{% url 'inventory.category.list' %}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>{% trans "Inventory" %} {% trans "Category" %} </p>
+                  <p>{% trans "Inventory" %} {% trans "Categories" %} </p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="pages/UI/general.html" class="nav-link">
+                <a href="{% url 'vendor.category.list' %}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>{% trans "Vendor" %} {% trans "Category" %} </p>
                 </a>
@@ -189,7 +197,7 @@
             <h1 class="m-0 text-dark"> {% block page_title %} {% trans "page_title" %} {% endblock %}</h1>
           </div><!-- /.col -->
           <div class="col-sm-6 float-sm-right text-right">
-            {% block nav_links %} {% endblock %}
+            {% block nav_links %} {% endblock %} 
             {% comment %} <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#"> {% trans 'Dashboard' %}</a></li>
               <li class="breadcrumb-item active"> asasa{{ page_title }} </li>

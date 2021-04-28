@@ -31,6 +31,7 @@ class VendorTable(tables.Table):
     actions = tables.TemplateColumn(ACTIONS)
     class Meta:
         model = Vendor
+        fields = ('name', 'father_name', 'category', 'mobile', 'cnic', 'address')
         class Meta:
             attrs = {"test": "test"}
 

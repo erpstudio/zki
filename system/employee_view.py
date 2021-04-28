@@ -31,6 +31,7 @@ class EmployeeTable(tables.Table):
     actions = tables.TemplateColumn(ACTIONS)
     class Meta:
         model = Employee
+        fields = ('name', 'father_name', 'category', 'mobile', 'cnic', 'address')
         class Meta:
             attrs = {"test": "test"}
 
@@ -73,13 +74,13 @@ def list(request):
     page["list"] = {}
     page["list"]["type"] = "table"
     page["list"]["title"] = _("Employee List")
-    page["list"]["table"] = EmployeeTable(employee.objects.all())
+    page["list"]["table"] = EmployeeTable(Employee.objects.all())
     
     return render(request, 'layout/bootstrap.html', {"page":page, "page_title":page_title})
 
 def show(request, id):
 
-    instance = employee.objects.get(id=id)
+    instance = Employee.objects.get(id=id)
 
     page = {}
     page["page_title"]= page_title
@@ -92,9 +93,10 @@ def show(request, id):
     
     data = {}
     data[_("category")] = instance.category.name
-    data[_("purchase_price")] = instance.purchase_price
-    data[_("sale_price")] = instance.sale_price
-    data[_("in_stock")] = instance.in_stock
+    data[_("mobile")] = instance.mobile
+    data[_("cnic")] = instance.cnic
+    data[_("address")] = instance.address
+    data[_("salary")] = instance.salary
     
     page["profile"]["data"] = data
 
@@ -128,7 +130,7 @@ def update(request, id):
     page["update"]["method"] = "post"
     page["update"]["title"] = _("Edit Employee")
     
-    instance = employee.objects.get(id=id)
+    instance = Employee.objects.get(id=id)
     form = EmployeeForm(request.POST or None, instance=instance)
     
     if request.method == "POST":
@@ -145,6 +147,6 @@ def update(request, id):
 
 
 def delete(request, id):
-    employee.objects.filter(id=id).delete()
+    Employee.objects.filter(id=id).delete()
     sweetify.success(request, _('Deleted Successfull'), timer=1000)
     return redirect('employee.list')

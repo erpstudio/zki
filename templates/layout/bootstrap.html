@@ -7,7 +7,9 @@
 
 {% block nav_links %}
     {% for key, item in page.nav_links.items %}
-            <a type="button" href="{% url item.link %}" class="btn btn-primary" >{{ item.label }}</a>
+        {% comment %} {% with url_news as url 'inventory.list' %}{% endwith %} {% endcomment %}
+        {% url item.link as link_url %}
+            <a type="button" href="{% url item.link %}" class="btn btn-primary {% if request.path == link_url  %}disabled{% endif %}" >{{ item.label }}</a>
     {% endfor %}
 {% endblock nav_links %}
 

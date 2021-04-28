@@ -36,6 +36,9 @@
                     <div class="row">
                         <div class="col-sm-6">
                             <button type="submit" class="btn btn-dark">Submit</button>
+                            {% for item in card.action_links  %}
+                                <a href="{{ card.action }}" class="btn btn-dark">{{ item.label }}</a>
+                            {% endfor %}
                         </div>
                     </div>
                     {% comment %} {% crispy card.form %} {% endcomment %}

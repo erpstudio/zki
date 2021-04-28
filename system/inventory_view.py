@@ -31,6 +31,7 @@ class InventoryTable(tables.Table):
     actions = tables.TemplateColumn(ACTIONS)
     class Meta:
         model = Inventory
+        fields = ('name', 'unit', 'category', 'purchase_price', 'sale_price', 'in_stock')
         class Meta:
             attrs = {"test": "test"}
 

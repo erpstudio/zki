@@ -99,7 +99,7 @@ msgstr ""
 
 #: templates/layout/base.html:66
 msgid "erpStudio"
-msgstr "ای آد پی سٹوڈیو"
+msgstr "ای آر پی سٹوڈیو"
 
 #: templates/layout/base.html:233
 msgid "Dashboard"
