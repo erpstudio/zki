@@ -18,30 +18,25 @@
             <div class="card-body collapsed">
             {% if card.form %}
                 {% if card.record_id %}
-                    <form role="form" method="post" action={% url card.action id=card.record_id %}>
+                    <form id="formset-id" role="form" method="post" action={% url card.action id=card.record_id %}>
                 {% else %}
-                    <form role="form" method="post" action={% url card.action%}>
+                    <form id="formset-id" role="form" method="post" action={% url card.action%}>
                 {% endif %}
-                
-                    {% csrf_token %}
-                    {% comment %} {{ card.form|crispy }} {% endcomment %}
+                {% csrf_token %}
+                <fieldset>
                      <div class="row">
                     {% for field in card.form %}
                         <div class="col-sm-6">
-                        {{ field.source }}
                             {{ field|as_crispy_field }}
                         </div>
                     {% endfor %}
                     </div>
+                </fieldset>
                     <div class="row">
                         <div class="col-sm-6">
                             <button type="submit" class="btn btn-dark">Submit</button>
-                            {% for item in card.action_links  %}
-                                <a href="{{ card.action }}" class="btn btn-dark">{{ item.label }}</a>
-                            {% endfor %}
                         </div>
                     </div>
-                    {% comment %} {% crispy card.form %} {% endcomment %}
                 </form>
                 {% else %}
                 <div class="alert alert-light text-center">
@@ -55,7 +50,6 @@
         </div>
     </div>         
 </div>
-
 
 {% comment %} <div class="form-group">
 <label for="exampleInputPassword1">Password</label>

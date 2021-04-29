@@ -61,8 +61,6 @@ def add(request):
     page["add"]["method"] = "post"
     page["add"]["title"] = _("Add Customer")
     page["add"]["form"] = CustomerForm()
-    page["action_links"] = {}
-    page["action_links"]["grantor"] = { "label":_("Save And Add Grantor"), "link":"customer.list"}
     
     return render(request, 'layout/bootstrap.html', {"page":page})
 

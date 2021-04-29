@@ -60,6 +60,5 @@ class Customer(models.Model):
     occupation = models.CharField(max_length=30, blank=True, null=True, verbose_name=_("Occupation"))
     balance = models.IntegerField(default=0, verbose_name=_("Balance"))
     area_zone = models.ForeignKey(AreaZone, blank=True, null=True, on_delete=models.CASCADE, verbose_name=_("Area Zone"))
-    gaurantor = models.ManyToManyField(CustomerGuarantor, blank=True, null=True, verbose_name=_("Gaurantor"))
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
