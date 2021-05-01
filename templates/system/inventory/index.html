@@ -1,0 +1,18 @@
+{% extends 'layout/base.html' %}
+{% load i18n %}
+
+{% block page_title %}
+{% trans "Inventory" %}
+{% endblock page_title %}
+
+{% block content %}
+
+{% for key, item in page.items %}
+    {% if item.type == "form" %}
+        {% include 'layout/form_card.html' with card=item %}
+    {% endif %}
+
+{% endfor %}
+
+
+{% endblock content %}

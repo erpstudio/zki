@@ -1,0 +1,125 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-04-19 08:30+0500\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: app/settings.py:118
+msgid "English"
+msgstr ""
+
+#: app/settings.py:119
+msgid "Urdu"
+msgstr ""
+
+#: system/inventory_view.py:29 system/models.py:7 system/models.py:16
+#: system/models.py:26 system/models.py:37
+msgid "Name"
+msgstr "نام"
+
+#: system/inventory_view.py:40
+msgid "Add Inventory"
+msgstr ""
+
+#: system/models.py:8
+msgid "Unit"
+msgstr ""
+
+#: system/models.py:9 system/models.py:22 system/models.py:31
+msgid "Category"
+msgstr ""
+
+#: system/models.py:10
+msgid "Purchase Price"
+msgstr ""
+
+#: system/models.py:11
+msgid "Sale Price"
+msgstr ""
+
+#: system/models.py:12
+msgid "In Stock"
+msgstr ""
+
+#: system/models.py:17
+msgid "Father Name"
+msgstr ""
+
+#: system/models.py:18 system/models.py:28
+msgid "CNIC"
+msgstr ""
+
+#: system/models.py:19 system/models.py:29
+msgid "Mobile"
+msgstr ""
+
+#: system/models.py:20 system/models.py:27 system/models.py:30
+#: system/models.py:38 system/models.py:39 system/models.py:40
+#: system/models.py:41
+msgid "Address"
+msgstr ""
+
+#: system/models.py:21
+msgid "Salary"
+msgstr ""
+
+#: system/models.py:32 system/models.py:42
+msgid "Balance"
+msgstr ""
+
+#: system/models.py:43
+msgid "Area Zone"
+msgstr ""
+
+#: templates/layout/base.html:43
+msgid "Home"
+msgstr "گھد"
+
+#: templates/layout/base.html:46
+msgid "Contact"
+msgstr ""
+
+#: templates/layout/base.html:53
+msgid "Search"
+msgstr ""
+
+#: templates/layout/base.html:66
+msgid "erpStudio"
+msgstr "ای آر پی سٹوڈیو"
+
+#: templates/layout/base.html:233
+msgid "Dashboard"
+msgstr ""
+
+#: templates/layout/base.html:297
+msgid "Copyright"
+msgstr ""
+
+#: templates/layout/base.html:298
+msgid "All rights reserved."
+msgstr ""
+
+#: templates/layout/base.html:300
+msgid "Version"
+msgstr ""
+
+#: templates/system/inventory/index.html:5
+msgid "Inventory"
+msgstr ""
+
+#~ msgid "Your name"
+#~ msgstr "آپ کا نام"

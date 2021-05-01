@@ -3,6 +3,12 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+**/migrations
+**/migrations/*
+*.DS_Store
+**/__pycache__
+**/.DS_Store
+
 # C extensions
 *.so
 
@@ -10,7 +16,7 @@ __pycache__/
 .Python
 build/
 develop-eggs/
-dist/
+# dist/
 downloads/
 eggs/
 .eggs/
