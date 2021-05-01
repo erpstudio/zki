@@ -1,5 +1,5 @@
 from django.urls import path
-from . import inventoryCat_view, vendorCat_view
+from . import inventoryCat_view, inventoryUnit_view, vendorCat_view
 
 urlpatterns = [
 
@@ -11,6 +11,15 @@ path('inventory/category/profile/<int:id>/', inventoryCat_view.show, name='inven
 path('inventory/category/save/', inventoryCat_view.save, name = 'inventory.category.save'),
 path('inventory/category/update/<int:id>/', inventoryCat_view.update, name = 'inventory.category.update'),
 path('inventory/category/delete/<int:id>/', inventoryCat_view.delete, name = 'inventory.category.delete'),
+
+#  Inventory Units
+path('inventory/unit/', inventoryUnit_view.index, name='inventory.unit.index'),
+path('inventory/unit/add/', inventoryUnit_view.add, name='inventory.unit.add'),
+path('inventory/unit/list/', inventoryUnit_view.list, name='inventory.unit.list'),
+path('inventory/unit/profile/<int:id>/', inventoryUnit_view.show, name='inventory.unit.show'),
+path('inventory/unit/save/', inventoryUnit_view.save, name = 'inventory.unit.save'),
+path('inventory/unit/update/<int:id>/', inventoryUnit_view.update, name = 'inventory.unit.update'),
+path('inventory/unit/delete/<int:id>/', inventoryUnit_view.delete, name = 'inventory.unit.delete'),
 
 
 #  Vendor Category 

@@ -13,6 +13,9 @@ class Inventory(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
 
+    def __str__(self):
+        return "%s" % (self.name)
+
 # Employes
 class Employee(models.Model):
     name = models.CharField(max_length=30, verbose_name=_("Name"))
@@ -22,6 +25,9 @@ class Employee(models.Model):
     address = models.CharField(max_length=30, blank=True, null=True, verbose_name=_("Address"))
     salary = models.IntegerField(default=0, verbose_name=_("Salary"))
     category = models.ForeignKey(EmployeeCategory, on_delete=models.CASCADE, verbose_name=_("Category"))
+
+    def __str__(self):
+        return "%s" % (self.name)
 
 ## Vendors
 class Vendor(models.Model):
@@ -34,6 +40,9 @@ class Vendor(models.Model):
     balance = models.IntegerField(default=0, verbose_name=_("Balance"))
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return "%s" % (self.name)
 
 
 
@@ -62,3 +71,6 @@ class Customer(models.Model):
     area_zone = models.ForeignKey(AreaZone, blank=True, null=True, on_delete=models.CASCADE, verbose_name=_("Area Zone"))
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return "%s" % (self.name)
