@@ -40,7 +40,6 @@ INSTALLED_APPS = [
     "django_forms_bootstrap",
     'crispy_forms',
     'django_tables2',
-    'table',
     'sweetify',
     'system',
     'settings',

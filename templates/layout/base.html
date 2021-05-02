@@ -30,9 +30,15 @@
   <link rel="stylesheet" href="https://cdn.rtlcss.com/bootstrap/v4.2.1/css/bootstrap.min.css">
   <!-- Custom style for RTL -->
   <link rel="stylesheet" href="{% static 'dist/css/custom.css' %}">
+  
   {% block styles %}
       
   {% endblock %}
+
+  <!-- jQuery -->
+  <script src="{% static 'plugins/jquery/jquery.min.js' %}"></script>
+
+
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
@@ -44,11 +50,11 @@
       <li class="nav-item">
         <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
       </li>
-      <li class="nav-item d-none d-sm-inline-block">
+      {% comment %} <li class="nav-item d-none d-sm-inline-block">
         <a href="index3.html" class="nav-link">{% trans 'Home' %}</a>
-      </li>
+      </li> {% endcomment %}
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="#" class="nav-link">{% trans 'Contact' %}</a>
+        <a href="{% url 'purchase.entry.add' %}" class="btn btn-warning">{% trans 'Purchase' %}</a>
       </li>
     </ul>
 
@@ -176,9 +182,9 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="pages/UI/general.html" class="nav-link">
+                <a href="{% url 'inventory.unit.list' %}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>{% trans "Customer" %} {% trans "Category" %} </p>
+                  <p>{% trans "Units" %} </p>
                 </a>
               </li>
             </ul>
@@ -238,8 +244,6 @@
 </div>
 <!-- ./wrapper -->
 
-<!-- jQuery -->
-<script src="{% static 'plugins/jquery/jquery.min.js' %}"></script>
 <!-- jQuery UI 1.11.4 -->
 <script src="{% static 'plugins/jquery-ui/jquery-ui.min.js' %}"></script>
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->

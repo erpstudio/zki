@@ -32,9 +32,6 @@ class CustomerTable(tables.Table):
     class Meta:
         model = Customer
         fields = ('name', 'father_name', 'mobile', 'cnic', 'address', 'occupation')
-        class Meta:
-            attrs = {"test": "test"}
-
 
 page_title = _("Customer")
 

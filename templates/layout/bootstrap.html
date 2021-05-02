@@ -16,14 +16,22 @@
 {% block content %}
 {{ test.a }}
 {% for key, item in page.items %}
-    {% if item.type == "form" and item.status != "disable" %}
-        {% include 'layout/include/form_card.html' with card=item %}
-    {% endif %}
-    {% if item.type == "table" and item.status != "disable" %}
-        {% include 'layout/include/table_card.html' with card=item %}
-    {% endif %}
-    {% if item.type == "profile" and item.status != "disable" %}
-        {% include 'layout/include/profile_card.html' with card=item %}
+    {% if item.template %}
+        
+        {% include item.template with card=item %}
+    
+    {% else %}
+    
+        {% if item.type == "form" and item.status != "disable" %}
+            {% include 'layout/include/form_card.html' with card=item %}
+        {% endif %}
+        {% if item.type == "table" and item.status != "disable" %}
+            {% include 'layout/include/table_card.html' with card=item %}
+        {% endif %}
+        {% if item.type == "profile" and item.status != "disable" %}
+            {% include 'layout/include/profile_card.html' with card=item %}
+        {% endif %}
+    
     {% endif %}
 
 {% endfor %}
