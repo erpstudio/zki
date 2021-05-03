@@ -12,7 +12,7 @@ import sweetify
 class EmployeeForm(forms.ModelForm):
     class Meta:
         model = Employee
-        fields = ('name', 'father_name', 'category', 'mobile', 'cnic', 'address')
+        fields = ('name', 'father_name', 'mobile', 'cnic', 'address')
         widgets = {
                 'name': forms.TextInput(attrs={'placeholder': _('Name')}),
                 # 'category': forms.Select(attrs={'class': 'select2', 'width':'100%'})
@@ -31,12 +31,27 @@ class EmployeeTable(tables.Table):
     actions = tables.TemplateColumn(ACTIONS)
     class Meta:
         model = Employee
-        fields = ('name', 'father_name', 'category', 'mobile', 'cnic', 'address')
+        fields = ('name', 'father_name', 'mobile', 'cnic', 'address')
         class Meta:
             attrs = {"test": "test"}
 
 
 page_title = _("Employee")
+
+def add_page(form=None):
+    page = {}
+    page["page_title"]= page_title
+    page["nav_links"] = {}
+    page["nav_links"]["add"] = { "label":"Add Employee", "link":"employee.add"}
+    page["nav_links"]["list"] = { "label":"Employee List", "link":"employee.list"}
+    page["add"] = {}
+    page["add"]["type"] = "form"
+    page["add"]["action"] = "employee.save"
+    page["add"]["method"] = "post"
+    page["add"]["title"] = _("Add Employee")
+    page["add"]["form"] = form
+    return page
+
 
 
 # Create your views here.
@@ -50,18 +65,7 @@ def index(request):
 
 
 def add(request):
-    page = {}
-    page["page_title"]= page_title
-    page["nav_links"] = {}
-    page["nav_links"]["add"] = { "label":"Add Employee", "link":"employee.add"}
-    page["nav_links"]["list"] = { "label":"Employee List", "link":"employee.list"}
-    page["add"] = {}
-    page["add"]["type"] = "form"
-    page["add"]["action"] = "employee.save"
-    page["add"]["method"] = "post"
-    page["add"]["title"] = _("Add Employee")
-    page["add"]["form"] = EmployeeForm()
-    
+    page = add_page(EmployeeForm())
     return render(request, 'layout/bootstrap.html', {"page":page})
 
 
@@ -92,7 +96,6 @@ def show(request, id):
     page["profile"]["title"] = instance.name
     
     data = {}
-    data[_("category")] = instance.category.name
     data[_("mobile")] = instance.mobile
     data[_("cnic")] = instance.cnic
     data[_("address")] = instance.address
@@ -112,9 +115,13 @@ def save(request):
             instance = form.save(commit=False)
             instance.save()
             sweetify.success(request, _('Saved Successfull'), timer=1000)
+            return redirect('employee.add')
     
+        page = add_page(EmployeeForm())
+        return render(request, 'layout/bootstrap.html', {"page":page})
     
     return redirect('employee.add')
+
 
 
 def update(request, id):
@@ -138,9 +145,6 @@ def update(request, id):
             form.save()
             sweetify.success(request, _('Updated Successfull'), timer=1000)
             return redirect('employee.update', id = id)
-        else:
-            sweetify.success(request, _('Action Error'), timer=1000)
-    
     
     page["update"]["form"] = form
     return render(request, 'layout/bootstrap.html', {"page":page})

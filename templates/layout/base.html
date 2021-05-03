@@ -56,6 +56,9 @@
       <li class="nav-item d-none d-sm-inline-block">
         <a href="{% url 'purchase.entry.add' %}" class="btn btn-warning">{% trans 'Purchase' %}</a>
       </li>
+      <li class="nav-item d-none d-sm-inline-block mr-2">
+        <a href="{% url 'sale.entry.add' %}" class="btn btn-danger">{% trans 'Installement Sale' %}</a>
+      </li>
     </ul>
 
     <!-- SEARCH FORM -->
@@ -229,7 +232,7 @@
   </div>
   <!-- /.content-wrapper -->
   <footer class="main-footer">
-    <strong>{% trans 'Copyright'%} &copy; 2014-2019 <a href="#">erpStudio</a>.</strong>
+    <strong>{% trans 'Copyright'%} &copy; 2019-{% now "Y" %} <a href="#">erpStudio</a>.</strong>
     {% trans 'All rights reserved.'%}
     <div class="float-right d-none d-sm-inline-block">
       <b>{% trans 'Version'%}</b> B.0.0.1

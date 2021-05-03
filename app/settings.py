@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'system',
     'settings',
     'purchase',
+    'installment',
 ]
 
 SWEETIFY_SWEETALERT_LIBRARY = 'sweetalert2'

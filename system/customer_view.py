@@ -35,6 +35,20 @@ class CustomerTable(tables.Table):
 
 page_title = _("Customer")
 
+def add_page(form=None):
+    page = {}
+    page["page_title"]= page_title
+    page["nav_links"] = {}
+    page["nav_links"]["add"] = { "label":_("Add Customer"), "link":"customer.add"}
+    page["nav_links"]["list"] = { "label":_("Customer List"), "link":"customer.list"}
+    page["add"] = {}
+    page["add"]["type"] = "form"
+    page["add"]["action"] = "customer.save"
+    page["add"]["method"] = "post"
+    page["add"]["title"] = _("Add Customer")
+    page["add"]["form"] = form
+    return page
+
 
 # Create your views here.
 def index(request):
@@ -47,17 +61,7 @@ def index(request):
 
 
 def add(request):
-    page = {}
-    page["page_title"]= page_title
-    page["nav_links"] = {}
-    page["nav_links"]["add"] = { "label":_("Add Customer"), "link":"customer.add"}
-    page["nav_links"]["list"] = { "label":_("Customer List"), "link":"customer.list"}
-    page["add"] = {}
-    page["add"]["type"] = "form"
-    page["add"]["action"] = "customer.save"
-    page["add"]["method"] = "post"
-    page["add"]["title"] = _("Add Customer")
-    page["add"]["form"] = CustomerForm()
+    page = add_page(CustomerForm())
     
     return render(request, 'layout/bootstrap.html', {"page":page})
 
@@ -107,10 +111,12 @@ def save(request):
             instance = form.save(commit=False)
             instance.save()
             sweetify.success(request, _('Saved Successfull'), timer=1000)
-    
-    
+            return redirect('customer.add')
+        
+        page = add_page(form) 
+        return render(request, 'layout/bootstrap.html', {"page":page})
+        
     return redirect('customer.add')
-
 
 def update(request, id):
     page = {}
@@ -133,9 +139,6 @@ def update(request, id):
             form.save()
             sweetify.success(request, _('Updated Successfull'), timer=1000)
             return redirect('customer.update', id = id)
-        else:
-            sweetify.success(request, _('Action Error'), timer=1000)
-    
     
     page["update"]["form"] = form
     return render(request, 'layout/bootstrap.html', {"page":page})

@@ -38,6 +38,19 @@ class InventoryTable(tables.Table):
 
 page_title = _("Inventory")
 
+def add_page(form=None):
+    page = {}
+    page["page_title"]= page_title
+    page["nav_links"] = {}
+    page["nav_links"]["add"] = { "label":"Add Inventory", "link":"inventory.add"}
+    page["nav_links"]["list"] = { "label":"Inventory List", "link":"inventory.list"}
+    page["add"] = {}
+    page["add"]["type"] = "form"
+    page["add"]["action"] = "inventory.save"
+    page["add"]["method"] = "post"
+    page["add"]["title"] = _("Add Inventory")
+    page["add"]["form"] = form
+    return page
 
 # Create your views here.
 def index(request):
@@ -50,18 +63,7 @@ def index(request):
 
 
 def add(request):
-    page = {}
-    page["page_title"]= page_title
-    page["nav_links"] = {}
-    page["nav_links"]["add"] = { "label":"Add Inventory", "link":"inventory.add"}
-    page["nav_links"]["list"] = { "label":"Inventory List", "link":"inventory.list"}
-    page["add"] = {}
-    page["add"]["type"] = "form"
-    page["add"]["action"] = "inventory.save"
-    page["add"]["method"] = "post"
-    page["add"]["title"] = _("Add Inventory")
-    page["add"]["form"] = InventoryForm()
-    
+    page = add_page(InventoryForm())
     return render(request, 'layout/bootstrap.html', {"page":page})
 
 
@@ -111,9 +113,14 @@ def save(request):
             instance = form.save(commit=False)
             instance.save()
             sweetify.success(request, _('Saved Successfull'), timer=1000)
-    
-    
+            return redirect('inventory.add')
+
+        page = add_page(InventoryForm())
+        return render(request, 'layout/bootstrap.html', {"page":page})
+
     return redirect('inventory.add')
+        
+
 
 
 def update(request, id):
