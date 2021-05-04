@@ -1,7 +1,17 @@
 from django.urls import path
-from . import inventoryCat_view, inventoryUnit_view, vendorCat_view
+from . import inventoryCat_view, inventoryUnit_view, vendorCat_view, areaZone_view
 
 urlpatterns = [
+
+#  Area Zone
+path('areazone/', areaZone_view.index, name='areazone.index'),
+path('areazone/add/', areaZone_view.add, name='areazone.add'),
+path('areazone/list/', areaZone_view.list, name='areazone.list'),
+path('areazone/profile/<int:id>/', areaZone_view.show, name='areazone.show'),
+path('areazone/save/', areaZone_view.save, name = 'areazone.save'),
+path('areazone/update/<int:id>/', areaZone_view.update, name = 'areazone.update'),
+path('areazone/delete/<int:id>/', areaZone_view.delete, name = 'areazone.delete'),
+
 
 #  Inventory Category
 path('inventory/category/', inventoryCat_view.index, name='inventory.category.index'),

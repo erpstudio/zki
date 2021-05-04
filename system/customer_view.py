@@ -96,6 +96,7 @@ def show(request, id):
     data[_("mobile")] = instance.mobile
     data[_("cnic")] = instance.cnic
     data[_("address")] = instance.address
+    data[_("balance")] = instance.balance
     
     page["profile"]["data"] = data
 

@@ -1,24 +1,14 @@
 from django.shortcuts import render
 from django.shortcuts import redirect
 from django.utils.translation import ugettext as _
+from django.db.models import Q
+from datetime import date as dt
 
 from .models import SaleEntry
 
 from django import forms
 import django_tables2 as tables
 import sweetify
-
-
-class SaleEntryForm(forms.ModelForm):
-    class Meta:
-        model = SaleEntry
-        fields = ('customer', 'inventory', 'areazone', 'unit_price', 'quantity', 'total_amount', 'first_installment_date', 'installment_interval_days', 'installment_amount')
-        widgets = {
-                # 'vendor': forms.TextInput(attrs={'placeholder': _('Name')}),
-                'vendor': forms.Select(attrs={'class': 'select2', 'width':'100%'}),
-                'inventory': forms.Select(attrs={'class': 'select2', 'width':'100%'})
-        }
-
 
 ACTIONS = '''
    <div class="btn-group"> 
@@ -31,50 +21,26 @@ class SaleEntryTable(tables.Table):
     actions = tables.TemplateColumn(ACTIONS)
     class Meta:
         model = SaleEntry
-        fields = ('customer', 'inventory', 'areazone', 'unit_price', 'quantity', 'total_amount', 'first_installment_date', 'installment_interval_days', 'installment_amount')
+        fields = ('customer', 'inventory', 'unit_price', 'quantity', 'total_amount', 'first_installment_date', 'installment_interval_days', 'installment_amount')
         
 
-page_title = _("Sale Entry")
-
-def add_page(form=None):
-    page = {}
-    page["page_title"]= page_title
-    page["nav_links"] = {}
-    page["nav_links"]["add"] = { "label":_("Add Entry"), "link":"sale.entry.add"}
-    page["nav_links"]["list"] = { "label":_("Entry List"), "link":"sale.entry.list"}
-    page["add"] = {}
-    page["add"]["type"] = "form"
-    page["add"]["template"] = "layout/include/purchase_form.html"
-    page["add"]["action"] = "sale.entry.save"
-    page["add"]["method"] = "post"
-    page["add"]["title"] = _("Sale")
-    page["add"]["form"] = form
-    page["add1"] = {}
-    page["add1"]["type"] = "form"
-    page["add1"]["template"] = "layout/include/purchase_form.html"
-    page["add1"]["action"] = "sale.entry.save"
-    page["add1"]["method"] = "post"
-    page["add1"]["title"] = _("Test Card")
-    
-    return page
-
-def add(request):
-    
-    page = add_page(form=SaleEntryForm())
-    
-    return render(request, 'layout/bootstrap.html', {"page":page})
-
+page_title = _("Installment")
 
 def list(request):
     page = {}
     page["page_title"]= page_title
     page["nav_links"] = {}
-    page["nav_links"]["add"] = { "label":_("Add Entry"), "link":"sale.entry.add"}
-    page["nav_links"]["list"] = { "label":_("Entry List"), "link":"sale.entry.list"}
+    page["nav_links"]["add"] = { "label":_("Sale Entry"), "link":"sale.entry.add"}
+    page["nav_links"]["list"] = { "label":_("Sale List"), "link":"sale.entry.list"}
     page["list"] = {}
     page["list"]["type"] = "table"
-    page["list"]["title"] = _("Entry List")
-    page["list"]["table"] = SaleEntryTable(SaleEntry.objects.all())
+    page["list"]["title"] = _("Installment List")
+
+    data = SaleEntry.objects.filter(total_amount__gt=0).filter(
+        Q(recent_installment_date= 0)
+    )
+
+    page["list"]["table"] = SaleEntryTable(data)
     
     return render(request, 'layout/bootstrap.html', {"page":page, "page_title":page_title})
 

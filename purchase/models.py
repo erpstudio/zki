@@ -10,6 +10,12 @@ class PurchaseEntry(models.Model):
     unit_price = models.IntegerField(default=0, verbose_name=_("Unit Price"))
     quantity = models.IntegerField(default=0, verbose_name=_("Quantity"))
     total_amount = models.IntegerField(default=0, verbose_name=_("Total Amount"))
-    # date = models.DateField(default=dt.today, verbose_name=_("Date"))
+    date = models.DateField(default=dt.today, verbose_name=_("Date"))
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
+
+    def save(self, *args, **kwargs):
+        inventory = Inventory.objects.get(id=self.inventory.id)
+        inventory.in_stock = inventory.in_stock+self.quantity
+        inventory.save()
+        super().save(*args, **kwargs)
