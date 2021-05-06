@@ -5,6 +5,7 @@ from django.utils.translation import ugettext as _
 from .models import SaleEntry
 
 from django import forms
+from django.core.exceptions import ValidationError
 import django_tables2 as tables
 import sweetify
 
@@ -12,12 +13,23 @@ import sweetify
 class SaleEntryForm(forms.ModelForm):
     class Meta:
         model = SaleEntry
-        fields = ('customer', 'inventory', 'areazone', 'unit_price', 'quantity', 'total_amount', 'first_installment_date', 'installment_interval_days', 'installment_amount')
+        fields = ('customer', 'inventory', 'areazone', 'unit_price', 'quantity', 'total_amount', 'first_installment_date', 'installment_cycle', 'installment_amount', 'no_of_installments')
         widgets = {
                 # 'vendor': forms.TextInput(attrs={'placeholder': _('Name')}),
                 'vendor': forms.Select(attrs={'class': 'select2', 'width':'100%'}),
                 'inventory': forms.Select(attrs={'class': 'select2', 'width':'100%'})
         }
+    
+    def clean(self):
+        cleaned_data = super().clean()
+        print(cleaned_data)
+        total_amount = cleaned_data.get("total_amount")
+        installment_amount = cleaned_data.get("installment_amount")
+
+        if installment_amount > total_amount:
+            msg = _("Installment Amount can't be greater then Total Amount")
+            self.add_error('installment_amount', msg)
+
 
 
 ACTIONS = '''
@@ -31,7 +43,7 @@ class SaleEntryTable(tables.Table):
     actions = tables.TemplateColumn(ACTIONS)
     class Meta:
         model = SaleEntry
-        fields = ('customer', 'inventory', 'areazone', 'unit_price', 'quantity', 'total_amount', 'first_installment_date', 'installment_interval_days', 'installment_amount')
+        fields = ('id', 'customer', 'inventory', 'areazone', 'unit_price', 'quantity', 'total_amount', 'first_installment_date', 'installment_cycle', 'installment_amount','no_of_installments')
         
 
 page_title = _("Sale Entry")
@@ -49,12 +61,6 @@ def add_page(form=None):
     page["add"]["method"] = "post"
     page["add"]["title"] = _("Sale")
     page["add"]["form"] = form
-    page["add1"] = {}
-    page["add1"]["type"] = "form"
-    page["add1"]["template"] = "layout/include/purchase_form.html"
-    page["add1"]["action"] = "sale.entry.save"
-    page["add1"]["method"] = "post"
-    page["add1"]["title"] = _("Test Card")
     
     return page
 
@@ -94,7 +100,7 @@ def show(request, id):
     data = {}
     data[_("vendor")] = instance.customer
     data[_("inventory")] = instance.inventory
-    data[_("installment_interval_days")] = instance.installment_interval_days
+    data[_("installment_cycle")] = instance.installment_cycle
     data[_("installment_amount")] = instance.installment_amount
     data[_("unit_price")] = instance.unit_price
     data[_("quantity")] = instance.quantity

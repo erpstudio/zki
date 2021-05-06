@@ -52,11 +52,24 @@
 <script>
 
 $("#id_total_amount").attr("readonly","readonly");
+$("#id_no_of_installments").attr("readonly","readonly");
 $("#id_unit_price, #id_quantity").keyup(function(){
     var id_unit_price = $("#id_unit_price").val();
     var id_quantity = $("#id_quantity").val();
     id_total_amount = id_unit_price*id_quantity;
     $("#id_total_amount").val(id_total_amount);
+});
+
+$("#id_total_amount, #id_installment_amount, #id_unit_price, #id_quantity").keyup(function(){
+    var id_no_of_installments = 1;
+    var id_total_amount = $("#id_total_amount").val();
+    var id_installment_amount = $("#id_installment_amount").val();
+    id_no_of_installments = Math.round(id_total_amount/id_installment_amount);
+    if (id_no_of_installments < 1){
+        id_no_of_installments = 1;
+    }
+    $("#id_no_of_installments").val(id_no_of_installments);
+
 });
 
 </script>

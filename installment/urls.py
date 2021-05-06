@@ -4,7 +4,7 @@ from . import saleentry_view, installment_view
 urlpatterns = [
 
 #  Installments
-path('installment/list', installment_view.list, name='installment.list'),
+path('installments/today', installment_view.today, name='installment.today'),
 
 #  Purchase Entry
 path('sale/entry/add', saleentry_view.add, name='sale.entry.add'),

@@ -12,7 +12,7 @@ import sweetify
 class EmployeeForm(forms.ModelForm):
     class Meta:
         model = Employee
-        fields = ('name', 'father_name', 'mobile', 'cnic', 'address')
+        fields = ('name', 'father_name', 'mobile', 'cnic', 'address', 'area_zone')
         widgets = {
                 'name': forms.TextInput(attrs={'placeholder': _('Name')}),
                 # 'category': forms.Select(attrs={'class': 'select2', 'width':'100%'})
@@ -31,7 +31,7 @@ class EmployeeTable(tables.Table):
     actions = tables.TemplateColumn(ACTIONS)
     class Meta:
         model = Employee
-        fields = ('name', 'father_name', 'mobile', 'cnic', 'address')
+        fields = ('name', 'father_name', 'mobile', 'cnic', 'address', 'area_zone')
         class Meta:
             attrs = {"test": "test"}
 

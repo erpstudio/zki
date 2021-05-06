@@ -24,6 +24,7 @@ class Employee(models.Model):
     mobile = models.CharField(max_length=30, blank=True, null=True, verbose_name=_("Mobile"))
     address = models.CharField(max_length=30, blank=True, null=True, verbose_name=_("Address"))
     salary = models.IntegerField(default=0, verbose_name=_("Salary"))
+    area_zone =  models.ForeignKey(AreaZone, verbose_name=_("AreaZone"), on_delete=models.CASCADE)
 
     def __str__(self):
         return "%s" % (self.name)

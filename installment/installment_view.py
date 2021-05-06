@@ -1,10 +1,9 @@
 from django.shortcuts import render
 from django.shortcuts import redirect
 from django.utils.translation import ugettext as _
-from django.db.models import Q
-from datetime import date as dt
+import datetime as dt
 
-from .models import SaleEntry
+from .models import SaleEntry, InstallmentSchedule
 
 from django import forms
 import django_tables2 as tables
@@ -24,9 +23,16 @@ class SaleEntryTable(tables.Table):
         fields = ('customer', 'inventory', 'unit_price', 'quantity', 'total_amount', 'first_installment_date', 'installment_interval_days', 'installment_amount')
         
 
-page_title = _("Installment")
+class InstallmentScheduleTable(tables.Table):
+    actions = tables.TemplateColumn(ACTIONS)
+    class Meta:
+        model = InstallmentSchedule
+        fields = ('sale_entry.customer', 'sale_entry.inventory', 'sale_entry.areazone', 'scheduled_date', 'installment_amount')
+        
 
-def list(request):
+page_title = _("Installments")
+
+def today(request):
     page = {}
     page["page_title"]= page_title
     page["nav_links"] = {}
@@ -34,13 +40,11 @@ def list(request):
     page["nav_links"]["list"] = { "label":_("Sale List"), "link":"sale.entry.list"}
     page["list"] = {}
     page["list"]["type"] = "table"
-    page["list"]["title"] = _("Installment List")
+    page["list"]["title"] = _("Today Installments")
 
-    data = SaleEntry.objects.filter(total_amount__gt=0).filter(
-        Q(recent_installment_date= 0)
-    )
-
-    page["list"]["table"] = SaleEntryTable(data)
+    data = InstallmentSchedule.objects.filter()
+    print(dt.date.today())
+    page["list"]["table"] = InstallmentScheduleTable(data)
     
     return render(request, 'layout/bootstrap.html', {"page":page, "page_title":page_title})
 
