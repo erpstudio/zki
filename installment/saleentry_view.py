@@ -33,7 +33,7 @@ class SaleEntryForm(forms.ModelForm):
 
 
 ACTIONS = '''
-   <div class="btn-group"> 
+   <div class="btn-group d-print-none"> 
    <a class="btn btn-info" href="{% url 'sale.entry.show' record.id %}">View</a>
    </div>
 '''
@@ -79,7 +79,7 @@ def list(request):
     page["nav_links"]["list"] = { "label":_("Entry List"), "link":"sale.entry.list"}
     page["list"] = {}
     page["list"]["type"] = "table"
-    page["list"]["title"] = _("Entry List")
+    page["list"]["title"] = _("Sale Entry List")
     page["list"]["table"] = SaleEntryTable(SaleEntry.objects.all())
     
     return render(request, 'layout/bootstrap.html', {"page":page, "page_title":page_title})
