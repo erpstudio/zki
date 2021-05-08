@@ -43,7 +43,7 @@ class SaleEntryTable(tables.Table):
     actions = tables.TemplateColumn(ACTIONS)
     class Meta:
         model = SaleEntry
-        fields = ('id', 'customer', 'inventory', 'areazone', 'unit_price', 'quantity', 'total_amount', 'first_installment_date', 'installment_cycle', 'installment_amount','no_of_installments')
+        fields = ('id', 'customer', 'inventory', 'areazone', 'unit_price', 'quantity', 'total_amount', 'balance')
         
 
 page_title = _("Sale Entry")
