@@ -1,6 +1,7 @@
 from django.db import models
 import datetime as dt
 from django.core.validators import MinValueValidator
+from django.db.models import Count, F, Value
 
 from django.utils.translation import ugettext as _
 from  system.models import Inventory, Customer
@@ -16,6 +17,7 @@ class SaleEntry(models.Model):
     unit_price = models.IntegerField(default=0, verbose_name=_("Unit Price"))
     quantity = models.IntegerField(default=1, verbose_name=_("Quantity"))
     total_amount = models.IntegerField(default=0, verbose_name=_("Total Amount"))
+    balance = models.IntegerField(default=0, verbose_name=_("Balance"))
     first_installment_date = models.DateField(default=dt.date.today, verbose_name=_("Installment Started From"))
     installment_cycle = models.PositiveIntegerField(default=1, validators=[MinValueValidator(1)], verbose_name=_("Installment Cycle Days"))
     installment_amount = models.IntegerField(default=0, validators=[MinValueValidator(1)], verbose_name=_("Installment Amount"))
@@ -24,15 +26,17 @@ class SaleEntry(models.Model):
     updated = models.DateTimeField(auto_now=True)
 
     def save(self, *args, **kwargs):
-        customer = Customer.objects.get(id=self.customer.id)
-        customer.balance = customer.balance+self.total_amount
-        customer.save()
-        inventory = Inventory.objects.get(id=self.inventory.id)
-        inventory.in_stock = inventory.in_stock-self.quantity
-        inventory.save()
+        
+        if not self.pk :
+            customer = Customer.objects.filter(id=self.customer.id)
+            customer.update(balance=F('balance')+self.total_amount)
 
+            inventory = Inventory.objects.filter(id=self.inventory.id)
+            inventory.update(in_stock=F('in_stock')-self.quantity)
+
+            self.balance = self.total_amount
+        
         super().save(*args, **kwargs)
-
         scheduled_date = self.first_installment_date
         for number in range(self.no_of_installments):
             
@@ -42,12 +46,7 @@ class SaleEntry(models.Model):
                 scheduled_date = scheduled_date
             )
             sch_installment_save.save()
-            
             scheduled_date = scheduled_date + dt.timedelta(self.installment_cycle)
-
-            
-        sc_installaments = InstallmentSchedule.objects.all()
-        print(sc_installaments)
 
 
 class InstallmentSchedule(models.Model):
@@ -63,3 +62,16 @@ class ScheduledInstallmentPayment(models.Model):
     date = models.DateField(default=dt.date.today, verbose_name=_("Paid Date"))
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
+
+
+    def save(self, *args, **kwargs):
+        if not self.pk:
+            sch_installment = InstallmentSchedule.objects.get(id=self.scheduled_installment.id)
+            
+            saleentry = SaleEntry.objects.filter(id=sch_installment.sale_entry.id)
+            saleentry.update(balance=F('balance')-self.paid_amount)
+
+            customer = Customer.objects.filter(id=saleentry[0].customer.id)
+            customer.update(balance=F('balance')-self.paid_amount)
+            
+        super().save(*args, **kwargs)

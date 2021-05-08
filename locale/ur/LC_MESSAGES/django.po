@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-04-19 08:30+0500\n"
+"POT-Creation-Date: 2021-05-06 07:01+0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,28 +18,359 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: app/settings.py:118
+#: app/settings.py:125
 msgid "English"
 msgstr ""
 
-#: app/settings.py:119
+#: app/settings.py:126
 msgid "Urdu"
 msgstr ""
 
-#: system/inventory_view.py:29 system/models.py:7 system/models.py:16
-#: system/models.py:26 system/models.py:37
+#: installment/installment_view.py:27
+msgid "Sale ID"
+msgstr ""
+
+#: installment/installment_view.py:32
+msgid "Pay Installment"
+msgstr ""
+
+#: installment/installment_view.py:38
+msgid "Installments"
+msgstr ""
+
+#: installment/installment_view.py:44 installment/models.py:54
+#: installment/saleentry_view.py:49
+msgid "Sale Entry"
+msgstr ""
+
+#: installment/installment_view.py:45
+msgid "Sale List"
+msgstr ""
+
+#: installment/installment_view.py:48 templates/layout/base.html:64
+msgid "Today Installments"
+msgstr ""
+
+#: installment/installment_view.py:63 installment/saleentry_view.py:55
+#: installment/saleentry_view.py:78 installment/saleentry_view.py:94
+#: purchase/purchase_view.py:43 purchase/purchase_view.py:64
+#: purchase/purchase_view.py:80
+msgid "Add Entry"
+msgstr ""
+
+#: installment/installment_view.py:64 installment/saleentry_view.py:56
+#: installment/saleentry_view.py:79 installment/saleentry_view.py:82
+#: installment/saleentry_view.py:95 purchase/purchase_view.py:44
+#: purchase/purchase_view.py:65 purchase/purchase_view.py:68
+#: purchase/purchase_view.py:81
+msgid "Entry List"
+msgstr ""
+
+#: installment/installment_view.py:67 installment/saleentry_view.py:98
+#: purchase/purchase_view.py:84
+msgid "Transaction#: {}"
+msgstr ""
+
+#: installment/installment_view.py:70 installment/saleentry_view.py:101
+#: purchase/purchase_view.py:87
+msgid "vendor"
+msgstr ""
+
+#: installment/installment_view.py:71 installment/saleentry_view.py:102
+#: purchase/purchase_view.py:88
+msgid "inventory"
+msgstr ""
+
+#: installment/installment_view.py:72
+msgid "installment_interval_days"
+msgstr ""
+
+#: installment/installment_view.py:73 installment/saleentry_view.py:104
+msgid "installment_amount"
+msgstr ""
+
+#: installment/installment_view.py:74 installment/saleentry_view.py:105
+#: purchase/purchase_view.py:89
+msgid "unit_price"
+msgstr ""
+
+#: installment/installment_view.py:75 installment/saleentry_view.py:106
+#: purchase/purchase_view.py:90
+msgid "quantity"
+msgstr ""
+
+#: installment/installment_view.py:76 installment/saleentry_view.py:107
+#: purchase/purchase_view.py:91
+msgid "total_amount"
+msgstr ""
+
+#: installment/installment_view.py:91 installment/saleentry_view.py:122
+#: purchase/purchase_view.py:106 settings/areaZone_view.py:106
+#: settings/inventoryCat_view.py:106 settings/inventoryUnit_view.py:106
+#: settings/vendorCat_view.py:106 system/customer_view.py:114
+#: system/employee_view.py:117 system/inventory_view.py:115
+#: system/vendor_view.py:115
+msgid "Saved Successfull"
+msgstr ""
+
+#: installment/models.py:13 system/customer_view.py:36
+#: templates/layout/base.html:143
+msgid "Customer"
+msgstr ""
+
+#: installment/models.py:14 purchase/models.py:9 system/inventory_view.py:39
+#: templates/layout/base.html:151 templates/layout/base.html:184
+#: templates/system/inventory/index.html:5
+msgid "Inventory"
+msgstr ""
+
+#: installment/models.py:15 system/models.py:58 system/models.py:71
+#: templates/layout/base.html:202
+msgid "Area Zone"
+msgstr ""
+
+#: installment/models.py:16 purchase/models.py:10
+msgid "Unit Price"
+msgstr ""
+
+#: installment/models.py:17 purchase/models.py:11
+msgid "Quantity"
+msgstr ""
+
+#: installment/models.py:18 purchase/models.py:12
+msgid "Total Amount"
+msgstr ""
+
+#: installment/models.py:19
+msgid "Installment Started From"
+msgstr ""
+
+#: installment/models.py:20
+msgid "Installment Cycle Days"
+msgstr ""
+
+#: installment/models.py:21 installment/models.py:55
+msgid "Installment Amount"
+msgstr ""
+
+#: installment/models.py:22
+msgid "Total Installments"
+msgstr ""
+
+#: installment/models.py:56
+msgid "Paying Date"
+msgstr "جمع کرنے تاریخ"
+
+#: installment/models.py:61
+msgid "Scheduled Installment"
+msgstr ""
+
+#: installment/models.py:62
+msgid "Paid Amount"
+msgstr "قیمت"
+
+#: installment/models.py:63
+msgid "Paid Date"
+msgstr "جمع کی تاریخ"
+
+#: installment/saleentry_view.py:30
+msgid "Installment Amount can't be greater then Total Amount"
+msgstr ""
+
+#: installment/saleentry_view.py:62
+msgid "Sale"
+msgstr ""
+
+#: installment/saleentry_view.py:103
+msgid "installment_cycle"
+msgstr ""
+
+#: purchase/models.py:8 system/vendor_view.py:39 templates/layout/base.html:159
+#: templates/layout/base.html:190
+msgid "Vendor"
+msgstr ""
+
+#: purchase/models.py:13
+msgid "Date"
+msgstr ""
+
+#: purchase/purchase_view.py:37
+msgid "Purchase Entry"
+msgstr ""
+
+#: purchase/purchase_view.py:50 templates/layout/base.html:58
+msgid "Purchase"
+msgstr ""
+
+#: settings/areaZone_view.py:17 settings/inventoryCat_view.py:17
+#: settings/inventoryUnit_view.py:17 settings/vendorCat_view.py:17
+#: system/customer_view.py:17 system/employee_view.py:17
+#: system/inventory_view.py:17 system/models.py:7 system/models.py:21
+#: system/models.py:34 system/models.py:51 system/models.py:64
+#: system/vendor_view.py:17
 msgid "Name"
 msgstr "نام"
 
-#: system/inventory_view.py:40
+#: settings/areaZone_view.py:37 system/models.py:27
+msgid "AreaZone"
+msgstr ""
+
+#: settings/areaZone_view.py:60
+msgid "Add AreaZone"
+msgstr ""
+
+#: settings/areaZone_view.py:74
+msgid "AreaZone List"
+msgstr ""
+
+#: settings/areaZone_view.py:123
+msgid "Edit AreaZone"
+msgstr ""
+
+#: settings/areaZone_view.py:131 settings/inventoryCat_view.py:131
+#: settings/inventoryUnit_view.py:131 settings/vendorCat_view.py:131
+#: system/customer_view.py:141 system/employee_view.py:146
+#: system/inventory_view.py:145 system/vendor_view.py:140
+msgid "Updated Successfull"
+msgstr ""
+
+#: settings/areaZone_view.py:134 settings/inventoryCat_view.py:134
+#: settings/inventoryUnit_view.py:134 settings/vendorCat_view.py:134
+#: system/inventory_view.py:148 system/vendor_view.py:143
+msgid "Action Error"
+msgstr ""
+
+#: settings/areaZone_view.py:143 settings/inventoryCat_view.py:143
+#: settings/inventoryUnit_view.py:143 settings/vendorCat_view.py:143
+#: system/customer_view.py:150 system/employee_view.py:155
+#: system/inventory_view.py:157 system/vendor_view.py:152
+msgid "Deleted Successfull"
+msgstr ""
+
+#: settings/inventoryCat_view.py:37
+msgid "Inventory Category"
+msgstr ""
+
+#: settings/inventoryCat_view.py:60 settings/vendorCat_view.py:60
+msgid "Add Category"
+msgstr ""
+
+#: settings/inventoryCat_view.py:74 settings/vendorCat_view.py:74
+msgid "Category List"
+msgstr ""
+
+#: settings/inventoryCat_view.py:123 settings/vendorCat_view.py:123
+msgid "Edit Category"
+msgstr ""
+
+#: settings/inventoryUnit_view.py:37
+msgid "Inventory Unit"
+msgstr ""
+
+#: settings/inventoryUnit_view.py:60
+msgid "Add Unit"
+msgstr ""
+
+#: settings/inventoryUnit_view.py:74
+msgid "Unit List"
+msgstr ""
+
+#: settings/inventoryUnit_view.py:123
+msgid "Edit Unit"
+msgstr ""
+
+#: settings/vendorCat_view.py:37
+msgid "Vendor Category"
+msgstr ""
+
+#: system/customer_view.py:42 system/customer_view.py:48
+#: system/customer_view.py:58 system/customer_view.py:73
+#: system/customer_view.py:89 system/customer_view.py:126
+msgid "Add Customer"
+msgstr ""
+
+#: system/customer_view.py:43 system/customer_view.py:59
+#: system/customer_view.py:74 system/customer_view.py:77
+#: system/customer_view.py:90 system/customer_view.py:127
+msgid "Customer List"
+msgstr ""
+
+#: system/customer_view.py:96 system/employee_view.py:99
+#: system/vendor_view.py:99
+msgid "mobile"
+msgstr ""
+
+#: system/customer_view.py:97 system/employee_view.py:100
+#: system/vendor_view.py:98
+msgid "cnic"
+msgstr ""
+
+#: system/customer_view.py:98 system/employee_view.py:101
+#: system/vendor_view.py:97
+msgid "address"
+msgstr ""
+
+#: system/customer_view.py:99 system/vendor_view.py:100
+msgid "balance"
+msgstr ""
+
+#: system/customer_view.py:133
+msgid "Edit Customer"
+msgstr ""
+
+#: system/employee_view.py:39 templates/layout/base.html:167
+msgid "Employee"
+msgstr ""
+
+#: system/employee_view.py:51
+msgid "Add Employee"
+msgstr ""
+
+#: system/employee_view.py:80
+msgid "Employee List"
+msgstr ""
+
+#: system/employee_view.py:102
+msgid "salary"
+msgstr ""
+
+#: system/employee_view.py:138
+msgid "Edit Employee"
+msgstr ""
+
+#: system/inventory_view.py:51
 msgid "Add Inventory"
+msgstr ""
+
+#: system/inventory_view.py:78
+msgid "Inventory List"
+msgstr ""
+
+#: system/inventory_view.py:97 system/vendor_view.py:96
+msgid "category"
+msgstr ""
+
+#: system/inventory_view.py:98
+msgid "purchase_price"
+msgstr ""
+
+#: system/inventory_view.py:99
+msgid "sale_price"
+msgstr ""
+
+#: system/inventory_view.py:100
+msgid "in_stock"
+msgstr ""
+
+#: system/inventory_view.py:137
+msgid "Edit Inventory"
 msgstr ""
 
 #: system/models.py:8
 msgid "Unit"
 msgstr ""
 
-#: system/models.py:9 system/models.py:22 system/models.py:31
+#: system/models.py:9 system/models.py:39 templates/layout/base.html:190
 msgid "Category"
 msgstr ""
 
@@ -55,71 +386,108 @@ msgstr ""
 msgid "In Stock"
 msgstr ""
 
-#: system/models.py:17
+#: system/models.py:22 system/models.py:35 system/models.py:52
+#: system/models.py:65
 msgid "Father Name"
 msgstr ""
 
-#: system/models.py:18 system/models.py:28
+#: system/models.py:23 system/models.py:36 system/models.py:66
 msgid "CNIC"
 msgstr ""
 
-#: system/models.py:19 system/models.py:29
+#: system/models.py:24 system/models.py:37 system/models.py:67
 msgid "Mobile"
 msgstr ""
 
-#: system/models.py:20 system/models.py:27 system/models.py:30
-#: system/models.py:38 system/models.py:39 system/models.py:40
-#: system/models.py:41
+#: system/models.py:25 system/models.py:38 system/models.py:53
+#: system/models.py:54 system/models.py:55 system/models.py:68
 msgid "Address"
 msgstr ""
 
-#: system/models.py:21
+#: system/models.py:26
 msgid "Salary"
 msgstr ""
 
-#: system/models.py:32 system/models.py:42
+#: system/models.py:40 system/models.py:57 system/models.py:70
 msgid "Balance"
 msgstr ""
 
-#: system/models.py:43
-msgid "Area Zone"
+#: system/models.py:56 system/models.py:69
+msgid "Occupation"
 msgstr ""
 
-#: templates/layout/base.html:43
-msgid "Home"
-msgstr "گھد"
-
-#: templates/layout/base.html:46
-msgid "Contact"
+#: system/vendor_view.py:62
+msgid "Add Vendor"
 msgstr ""
 
-#: templates/layout/base.html:53
-msgid "Search"
+#: system/vendor_view.py:76
+msgid "Vendor List"
 msgstr ""
 
-#: templates/layout/base.html:66
+#: system/vendor_view.py:132
+msgid "Edit Vendor"
+msgstr ""
+
+#: templates/django_tables2/datatable.html:64
+msgid "previous"
+msgstr ""
+
+#: templates/django_tables2/datatable.html:84
+msgid "next"
+msgstr ""
+
+#: templates/layout/base.html:8 templates/layout/base.html:84
 msgid "erpStudio"
 msgstr "ای آر پی سٹوڈیو"
 
-#: templates/layout/base.html:233
+#: templates/layout/base.html:61
+msgid "Installement Sale"
+msgstr ""
+
+#: templates/layout/base.html:71
+msgid "Search"
+msgstr ""
+
+#: templates/layout/base.html:135
 msgid "Dashboard"
 msgstr ""
 
-#: templates/layout/base.html:297
+#: templates/layout/base.html:171
+msgid "Setting"
+msgstr ""
+
+#: templates/layout/base.html:176 templates/layout/base.html:184
+msgid "Categories"
+msgstr ""
+
+#: templates/layout/base.html:196
+msgid "Units"
+msgstr ""
+
+#: templates/layout/base.html:221
+msgid "page_title"
+msgstr ""
+
+#: templates/layout/base.html:248
 msgid "Copyright"
 msgstr ""
 
-#: templates/layout/base.html:298
+#: templates/layout/base.html:249
 msgid "All rights reserved."
 msgstr ""
 
-#: templates/layout/base.html:300
+#: templates/layout/base.html:251
 msgid "Version"
 msgstr ""
 
-#: templates/system/inventory/index.html:5
-msgid "Inventory"
+#: templates/layout/include/form_card.html:43
+#: templates/layout/include/purchase_form.html:41
+#: templates/layout/include/table_card.html:24
+msgid "Empty Card"
 msgstr ""
+
+#~ msgid "Home"
+#~ msgstr "گھد"
 
 #~ msgid "Your name"
 #~ msgstr "آپ کا نام"

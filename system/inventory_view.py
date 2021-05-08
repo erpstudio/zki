@@ -20,7 +20,7 @@ class InventoryForm(forms.ModelForm):
     
 
 ACTIONS = '''
-   <div class="btn-group"> 
+   <div class="btn-group d-print-none"> 
    <a class="btn btn-primary" href="{% url 'inventory.update' record.id %}">Edit</a>
    <a class="btn btn-info" href="{% url 'inventory.show' record.id %}">View</a>
    <a class="btn btn-danger" href="{% url 'inventory.delete' record.id %}">Delete</a>

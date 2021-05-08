@@ -49,6 +49,7 @@ INSTALLED_APPS = [
 
 SWEETIFY_SWEETALERT_LIBRARY = 'sweetalert2'
 DJANGO_TABLES2_TEMPLATE = "django_tables2/datatable.html"
+# DJANGO_TABLES2_TEMPLATE = "django_tables2/bootstrap4.html"
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 

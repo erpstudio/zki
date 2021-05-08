@@ -105,6 +105,7 @@ def show(request, id):
     data[_("unit_price")] = instance.unit_price
     data[_("quantity")] = instance.quantity
     data[_("total_amount")] = instance.total_amount
+    data[_("balance")] = instance.balance
     
     page["profile"]["data"] = data
 

@@ -1,0 +1,13 @@
+{% load i18n %}
+
+<div class="small-box bg-info">
+  <div class="inner">
+    <h3>{{ card.title }}</h3>
+
+    <p>{{ card.label }}</p>
+  </div>
+  <div class="icon">
+    <i class="{{ card.icon }}"></i>
+  </div>
+  <a href="{% url card.more_info %}" class="small-box-footer">{% trans "More info" %} <i class="fas fa-arrow-circle-right"></i></a>
+</div>

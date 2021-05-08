@@ -5,6 +5,8 @@ urlpatterns = [
 
 #  Installments
 path('installments/today', installment_view.today, name='installment.today'),
+path('installments/pending', installment_view.pending, name='installment.pending'),
+path('installments/payment/<int:id>/', installment_view.payment, name='installment.payment'),
 
 #  Purchase Entry
 path('sale/entry/add', saleentry_view.add, name='sale.entry.add'),
