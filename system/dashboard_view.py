@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from django.utils.translation import ugettext as _
 import datetime as dt
+from django.db.models import Sum
+
 
 from installment.models import SaleEntry, InstallmentSchedule, ScheduledInstallmentPayment
 
@@ -15,6 +17,7 @@ def index(request):
     page["installments_today"]["template"] = "layout/include/info_color_card.html"
     page["installments_today"]["size"] = "4"
     page["installments_today"]["icon"] = "ion ion-pie-graph"
+    page["installments_today"]["color"] = "bg-info"
     page["installments_today"]["more_info"] = "installment.today"
     page["installments_today"]["action"] = "employee.save"
     page["installments_today"]["method"] = "post"
@@ -30,6 +33,7 @@ def index(request):
     page["installments_overall"]["template"] = "layout/include/info_color_card.html"
     page["installments_overall"]["size"] = "4"
     page["installments_overall"]["icon"] = "ion ion-pie-graph"
+    page["installments_overall"]["color"] = "bg-info"
     page["installments_overall"]["more_info"] = "installment.today"
     page["installments_overall"]["action"] = "employee.save"
     page["installments_overall"]["method"] = "post"
@@ -39,6 +43,25 @@ def index(request):
     overall_received_inst = overall_total_inst-overall_pending_inst
     page["installments_overall"]["label"] = "{}: {} | {}: {} |  {}: {}".format(_("Total"),overall_total_inst, _("Recieved"), overall_received_inst, _("Pending"),overall_pending_inst)
     page["installments_overall"]["title"] = _("Overall")
+
+    page["today_recovery"] = {}
+    page["today_recovery"]["type"] = "form"
+    page["today_recovery"]["template"] = "layout/include/info_color_card.html"
+    page["today_recovery"]["size"] = "4"
+    page["today_recovery"]["icon"] = "ion ion-stats-bars"
+    page["today_recovery"]["color"] = "bg-success"
+    page["today_recovery"]["more_info"] = "installment.today"
+    page["today_recovery"]["action"] = "employee.save"
+    page["today_recovery"]["method"] = "post"
+
+    today_pending_inst_amount = sch_installment.filter(scheduledinstallmentpayment=None).filter(scheduled_date=dt.date.today()).aggregate(Sum('installment_amount')).get('installment_amount__sum', 0)
+    if today_pending_inst_amount is None: today_pending_inst_amount = 0
+    today_total_inst_amount = sch_installment.filter(scheduled_date=dt.date.today()).aggregate(Sum('installment_amount')).get('installment_amount__sum', 0)
+    if today_total_inst_amount is None: today_total_inst_amount = 0
+
+    today_received_inst_amount = today_total_inst_amount-today_pending_inst_amount
+    page["today_recovery"]["label"] = "{}: {} | {}: {} |  {}: {}".format(_("Total"),today_total_inst_amount, _("Recieved"), today_received_inst_amount, _("Pending"),today_pending_inst_amount)
+    page["today_recovery"]["title"] = _("Today Recovery")
     
 
     return render(request, 'layout/bootstrap.html', {"page":page})
