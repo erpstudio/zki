@@ -21,7 +21,7 @@ def index(request):
     page["installments_today"]["more_info"] = "installment.today"
     page["installments_today"]["title"] = _("Today")
 
-    today_pending_inst = sch_installment.filter(scheduledinstallmentpayment=None).filter(scheduled_date=dt.date.today()).count()
+    today_pending_inst = sch_installment.filter(paid=False).filter(scheduled_date=dt.date.today()).count()
     today_total_inst = sch_installment.filter(scheduled_date=dt.date.today()).count()
     today_received_inst = today_total_inst-today_pending_inst
     page["installments_today"]["label"] = "{}: {} | {}: {} |  {}: {}".format(_("Total"),today_total_inst, _("Recieved"), today_received_inst, _("Pending"),today_pending_inst)
@@ -35,7 +35,7 @@ def index(request):
     page["installments_overall"]["more_info"] = "installment.today"
     page["installments_overall"]["title"] = _("Overall")
 
-    overall_pending_inst = sch_installment.filter(scheduledinstallmentpayment=None).count()
+    overall_pending_inst = sch_installment.filter(paid=False).count()
     overall_total_inst = sch_installment.count()
     overall_received_inst = overall_total_inst-overall_pending_inst
     page["installments_overall"]["label"] = "{}: {} | {}: {} |  {}: {}".format(_("Total"),overall_total_inst, _("Recieved"), overall_received_inst, _("Pending"),overall_pending_inst)
@@ -49,12 +49,12 @@ def index(request):
     page["today_recovery"]["more_info"] = "installment.today"
     page["today_recovery"]["title"] = _("Today Recovery")
 
-    today_pending_inst_amount = sch_installment.filter(scheduledinstallmentpayment=None).filter(scheduled_date=dt.date.today()).aggregate(Sum('installment_amount')).get('installment_amount__sum', 0)
-    if today_pending_inst_amount is None: today_pending_inst_amount = 0
+    today_received_inst_amount = sch_installment.filter(paid=True).filter(scheduled_date=dt.date.today()).aggregate(Sum('scheduledinstallmentpayment__paid_amount')).get('scheduledinstallmentpayment__paid_amount__sum', 0)
+    if today_received_inst_amount is None: today_received_inst_amount = 0
     today_total_inst_amount = sch_installment.filter(scheduled_date=dt.date.today()).aggregate(Sum('installment_amount')).get('installment_amount__sum', 0)
     if today_total_inst_amount is None: today_total_inst_amount = 0
 
-    today_received_inst_amount = today_total_inst_amount-today_pending_inst_amount
+    today_pending_inst_amount = today_total_inst_amount-today_received_inst_amount
     page["today_recovery"]["label"] = "{}: {} | {}: {} |  {}: {}".format(_("Total"),today_total_inst_amount, _("Recieved"), today_received_inst_amount, _("Pending"),today_pending_inst_amount)
     
     page["recovery_by_area"] = {}
@@ -66,17 +66,38 @@ def index(request):
     page["recovery_by_area"]["more_info"] = "installment.today"
     page["recovery_by_area"]["title"] = _("Today Reccovery By Area")
 
-    data = {}
+    dataset = []
     labels = []
-    values = []
 
-    group_by_area = sch_installment.values('sale_entry__areazone__name').filter(scheduledinstallmentpayment=None).filter(scheduled_date=dt.date.today()).annotate(Sum('installment_amount'))
-    for area in group_by_area:
-        labels.append(area["sale_entry__areazone__name"]) 
-        values.append(area["installment_amount__sum"])  
+    paid_true = sch_installment.values('sale_entry__areazone__name').filter(paid=True).filter(scheduled_date=dt.date.today()).annotate(Sum('scheduledinstallmentpayment__paid_amount'))
+    group_by_area_total = sch_installment.values('sale_entry__areazone__name').filter(scheduled_date=dt.date.today()).annotate(Sum('installment_amount'))
     
+    values = []
+    dataset_item = {}
+    print(paid_true) 
+    for area in paid_true:
+        values.append(area["scheduledinstallmentpayment__paid_amount__sum"])
+    
+    dataset_item["label"] = "Recieved"
+    dataset_item["data"] = values
+    dataset_item["backgroundColor"] = "#45c490"
+    dataset.append(dataset_item)
+    
+    values = []
+    dataset_item = {}
+    for area in group_by_area_total:
+        values.append(area["installment_amount__sum"])  
+        labels.append(area["sale_entry__areazone__name"]) 
+    
+
+    dataset_item["label"] = "Total"
+    dataset_item["data"] = values
+    dataset_item["backgroundColor"] = "#d8dee8"
+    dataset.append(dataset_item)
+
+    data = {}
     data["labels"] = labels
-    data["values"] = values
+    data["dataset"] = dataset       
     page["recovery_by_area"]["data"] = data
 
 

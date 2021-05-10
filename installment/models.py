@@ -38,11 +38,17 @@ class SaleEntry(models.Model):
         
         super().save(*args, **kwargs)
         scheduled_date = self.first_installment_date
-        for number in range(self.no_of_installments):
-            
+        for number in range(1, self.no_of_installments+1):
+            print("\n\n",self.no_of_installments,number,"\n\n")
+            installment_amount_created = self.installment_amount
+            if installment_amount_created*number > self.total_amount:
+                print("greater",installment_amount_created)
+                installment_amount_created = self.total_amount - installment_amount_created*(number-1)
+                print("equal",installment_amount_created)  
+
             sch_installment_save = InstallmentSchedule.objects.create(
                 sale_entry = self,
-                installment_amount = self.installment_amount,
+                installment_amount = installment_amount_created,
                 scheduled_date = scheduled_date
             )
             sch_installment_save.save()
@@ -53,6 +59,7 @@ class InstallmentSchedule(models.Model):
     sale_entry = models.ForeignKey(SaleEntry, verbose_name=_("Sale Entry"), on_delete=models.CASCADE)
     installment_amount = models.IntegerField(default=0, verbose_name=_("Installment Amount"))
     scheduled_date = models.DateField(default=dt.date.today, verbose_name=_("Paying Date"))
+    paid = models.BooleanField(default=False, verbose_name=_("Paid"))
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
 
@@ -66,9 +73,9 @@ class ScheduledInstallmentPayment(models.Model):
 
     def save(self, *args, **kwargs):
         if not self.pk:
-            sch_installment = InstallmentSchedule.objects.get(id=self.scheduled_installment.id)
-            
-            saleentry = SaleEntry.objects.filter(id=sch_installment.sale_entry.id)
+            sch_installment = InstallmentSchedule.objects.filter(id=self.scheduled_installment.id)
+            sch_installment.update(paid=True)
+            saleentry = SaleEntry.objects.filter(id=sch_installment[0].sale_entry.id)
             saleentry.update(balance=F('balance')-self.paid_amount)
 
             customer = Customer.objects.filter(id=saleentry[0].customer.id)

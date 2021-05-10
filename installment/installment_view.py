@@ -38,19 +38,27 @@ class SaleEntryTable(tables.Table):
 class InstallmentScheduleTable(tables.Table):
     sale_entry__id = tables.Column(verbose_name=_('Sale ID'))
     pay_installment = tables.TemplateColumn("""
-        <form class="confirm-form" action="{% url 'installment.payment' record.id %}" method="post">
-            {% csrf_token %}
-            <div class="input-group input-group-sm mb-3">
-                <input type="number" class="form-control" style="width:80px" name="pay_amount" value="{{ record.installment_amount }}" readonly />
-                <div class="input-group-append">
-                <button class="btn btn-info" type="submit">Recieve</button>
+    {% if record.sale_entry.balance != 0 %}
+        {% if record.paid == False %}
+            <form class="confirm-form" action="{% url 'installment.payment' record.id %}" method="post">
+                {% csrf_token %}
+                <div class="input-group input-group-sm mb-3">
+                    <input type="number" class="form-control" style="width:80px" name="pay_amount" value="{{ record.installment_amount }}" />
+                    <div class="input-group-append">
+                    <button class="btn btn-info" type="submit">Recieve</button>
+                    </div>
                 </div>
-            </div>
-        </form>
+            </form>
+            {% else %}
+                <strong class="text-success">Paid</strong>
+            {% endif %}
+        {% else %}
+            <strong class="text-success"><i class="fas fa-check"></i></strong>
+    {% endif %}
     """, verbose_name=_('Installment Payment'))
     class Meta:
         model = InstallmentSchedule
-        fields = ('sale_entry.customer', 'sale_entry.inventory', 'sale_entry.areazone', 'scheduled_date', 'installment_amount')
+        fields = ('sale_entry.customer', 'sale_entry.inventory', 'sale_entry.areazone', 'scheduled_date', 'installment_amount', 'sale_entry__balance')
         
 
 page_title = _("Installments")
@@ -76,9 +84,9 @@ def today(request):
         form.is_valid()
         form = form.cleaned_data
         areazone = form["Area"]
-        data = InstallmentSchedule.objects.filter(scheduledinstallmentpayment=None).filter(scheduled_date=dt.date.today()).filter(sale_entry__areazone = areazone)
+        data = InstallmentSchedule.objects.filter(paid=False).filter(scheduled_date=dt.date.today()).filter(sale_entry__areazone = areazone)
     else:
-        data = InstallmentSchedule.objects.filter(scheduledinstallmentpayment=None).filter(scheduled_date=dt.date.today())
+        data = InstallmentSchedule.objects.filter(paid=False).filter(scheduled_date=dt.date.today())
     
     page["list"]["table"] = InstallmentScheduleTable(data)
     
@@ -106,9 +114,9 @@ def pending(request):
         form.is_valid()
         form = form.cleaned_data
         areazone = form["Area"]
-        data = InstallmentSchedule.objects.filter(scheduledinstallmentpayment=None).filter(scheduled_date__lt=dt.date.today()).filter(sale_entry__areazone = areazone)
+        data = InstallmentSchedule.objects.filter(paid=False).filter(scheduled_date__lt=dt.date.today()).filter(sale_entry__areazone = areazone)
     else:
-        data = InstallmentSchedule.objects.filter(scheduledinstallmentpayment=None).filter(scheduled_date__lt=dt.date.today())
+        data = InstallmentSchedule.objects.filter(paid=False).filter(scheduled_date__lt=dt.date.today())
     
     page["list"]["table"] = InstallmentScheduleTable(data)
     

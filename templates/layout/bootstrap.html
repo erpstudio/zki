@@ -15,7 +15,7 @@
 
 {% block content %}
 
-<div class="row" style="height:100px;">
+<div class="row">
 {% for key, item in page.items %}
     <div class="col-sm-{{ item.size|default:12 }}">
     {% if item.template %}

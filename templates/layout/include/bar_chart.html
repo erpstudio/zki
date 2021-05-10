@@ -1,3 +1,4 @@
+{% load static %}
 {% load i18n %}
 
 <div class="card card-primary">
@@ -10,7 +11,7 @@
 </div>
   
 
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="{% static 'plugins/chart.js/Chart.min.js' %}"></script>
 
 <script>
 
@@ -20,20 +21,47 @@
     var barChartCanvas = $('#barChart').get(0).getContext('2d')
 
     var barChartOptions = {
-      responsive              : true,
-      maintainAspectRatio     : false,
-      datasetFill             : false
-    }
+    tooltips: {
+      displayColors: true,
+      callbacks:{
+        mode: 'x',
+      },
+    },
+    scales: {
+      xAxes: [{
+        stacked: true,
+        gridLines: {
+          display: false,
+        }
+      }],
+      yAxes: [{
+        stacked: false,
+        ticks: {
+          beginAtZero: true,
+        },
+        type: 'linear',
+      }]
+    },
+		responsive: true,
+		maintainAspectRatio: false,
+		legend: { position: 'top' },
+	}
 
     var barChart = new Chart(barChartCanvas, {
       type: 'bar', 
       data: {
-        datasets: [{
-          data: {{ card.data.values|safe }},
-          label: '{{ card.title }}'
-        }],
+        datasets: [
+          {% for item in card.data.dataset %}
+            {
+              label : '{{ item.label }}',
+              data : {{ item.data }},
+              backgroundColor : "{{ item.backgroundColor }}"
+            },
+          {% endfor %}
+        ],
         labels: {{ card.data.labels|safe }}
-      },
+      }, 
+      
       options: barChartOptions
     })
   </script>

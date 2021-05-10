@@ -1,12 +1,16 @@
 from django.shortcuts import render
 from django.shortcuts import redirect
 from django.utils.translation import ugettext as _
+import datetime as dt
 
 from .models import Customer
 
 from django import forms
 import django_tables2 as tables
 import sweetify
+
+from installment.installment_view import InstallmentScheduleTable
+from installment.models import InstallmentSchedule
 
 
 class CustomerForm(forms.ModelForm):
@@ -90,7 +94,9 @@ def show(request, id):
     page["nav_links"]["list"] = { "label":_("Customer List"), "link":"customer.list"}
     page["profile"] = {}
     page["profile"]["type"] = "profile"
+    page["profile"]["size"] = "12"
     page["profile"]["title"] = instance.name
+
     
     data = {}
     data[_("mobile")] = instance.mobile
@@ -100,6 +106,12 @@ def show(request, id):
     
     page["profile"]["data"] = data
 
+    pending_installments = InstallmentSchedule.objects.filter(sale_entry__customer=instance)
+    page["instalments"] = {}
+    page["instalments"]["type"] = "table"
+    page["instalments"]["size"] = "12"
+    page["instalments"]["title"] = _("Pending Installments")
+    page["instalments"]["table"] = InstallmentScheduleTable(pending_installments)
     
     return render(request, 'layout/bootstrap.html', {"page":page})
 

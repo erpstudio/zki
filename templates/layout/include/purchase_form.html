@@ -64,7 +64,7 @@ $("#id_total_amount, #id_installment_amount, #id_unit_price, #id_quantity").keyu
     var id_no_of_installments = 1;
     var id_total_amount = $("#id_total_amount").val();
     var id_installment_amount = $("#id_installment_amount").val();
-    id_no_of_installments = Math.round(id_total_amount/id_installment_amount);
+    id_no_of_installments = Math.ceil(id_total_amount/id_installment_amount);
     if (id_no_of_installments < 1){
         id_no_of_installments = 1;
     }
