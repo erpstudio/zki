@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.utils.translation import ugettext as _
 import datetime as dt
 from django.db.models import Sum
-
+from system.models import AreaZone
 
 from installment.models import SaleEntry, InstallmentSchedule, ScheduledInstallmentPayment
 
@@ -71,34 +71,54 @@ def index(request):
 
     paid_true = sch_installment.values('sale_entry__areazone__name').filter(paid=True).filter(scheduled_date=dt.date.today()).annotate(Sum('scheduledinstallmentpayment__paid_amount')).order_by('-sale_entry__areazone__name')
     group_by_area_total = sch_installment.values('sale_entry__areazone__name').filter(scheduled_date=dt.date.today()).annotate(Sum('installment_amount')).order_by('-sale_entry__areazone__name')
+    areas = AreaZone.objects.only('name')
+        
+    values_t = []
+    dataset_item_r = {}
+    values_r = []
+    dataset_item_t = {}
+    matched = False
+    for area in areas:
+        area = area.name
+        labels.append(area)
+        print(area)
+        for item in group_by_area_total:
+            print("A:",area,"f:",item["sale_entry__areazone__name"])
+            if item["sale_entry__areazone__name"] == area:
+                matched = True
+                values_t.append(item["installment_amount__sum"])
+        
+        if matched == False:values_t.append(0) 
+        matched = False
+        for item in paid_true:
+            print("A:",area,"f:",item["sale_entry__areazone__name"])
+            if item["sale_entry__areazone__name"] == area:
+                matched = True
+                values_r.append(item["scheduledinstallmentpayment__paid_amount__sum"])
+
+        if matched == False: values_r.append(0)
+        matched = False
+
+    dataset_item_t["label"] = "Total"
+    dataset_item_t["data"] = values_t
+    dataset_item_t["backgroundColor"] = "#d8dee8"
+    dataset.append(dataset_item_t)
+
+    dataset_item_r["label"] = "Recieved"
+    dataset_item_r["data"] = values_r
+    dataset_item_r["backgroundColor"] = "#45c490"
+    dataset.append(dataset_item_r)
     
-    values = []
-    dataset_item = {}
-    print(paid_true) 
-    for area in paid_true:
-        values.append(area["scheduledinstallmentpayment__paid_amount__sum"])
-    
-    dataset_item["label"] = "Recieved"
-    dataset_item["data"] = values
-    dataset_item["backgroundColor"] = "#45c490"
-    dataset.append(dataset_item)
-    
-    values = []
-    dataset_item = {}
-    for area in group_by_area_total:
-        values.append(area["installment_amount__sum"])  
-        labels.append(area["sale_entry__areazone__name"]) 
     
 
-    dataset_item["label"] = "Total"
-    dataset_item["data"] = values
-    dataset_item["backgroundColor"] = "#d8dee8"
-    dataset.append(dataset_item)
+
+    print(labels,dataset)    
+    
+    # values_r.extend([0] * (len(values_t)-len(values_r)))
 
     data = {}
     data["labels"] = labels
     data["dataset"] = dataset       
     page["recovery_by_area"]["data"] = data
-
 
     return render(request, 'layout/bootstrap.html', {"page":page})
