@@ -28,8 +28,14 @@ class AreaZoneForm(forms.Form):
         # }
 
 
+class SummingColumn(tables.Column):
+    def render_footer(self, bound_column, table):
+        return sum(bound_column.accessor.resolve(row) for row in table.data)
+
 class SaleEntryTable(tables.Table):
     actions = tables.TemplateColumn(ACTIONS)
+    customer = tables.Column(footer="Total")
+    installment_amount = SummingColumn()
     class Meta:
         model = SaleEntry
         fields = ('customer', 'inventory', 'unit_price', 'quantity', 'total_amount', 'first_installment_date', 'installment_interval_days', 'installment_amount')
@@ -38,7 +44,17 @@ class SaleEntryTable(tables.Table):
 class InstallmentScheduleTable(tables.Table):
     sale_entry__id = tables.Column(verbose_name=_('Sale ID'))
     pay_installment = tables.TemplateColumn("""
-    {% if record.sale_entry.balance != 0 %}
+    {% if record.sale_entry.balance == 0 %}
+        {% if record.paid == False %}
+            <form action="{% url "installment.updateStatustoPaid" %}" method="POST">
+            {% csrf_token %}
+            <input type="hidden" name="sale_entry" value="{{ record.sale_entry.id }}">
+            <button class="btn btn-success" title="Balance is 0 Update Pending Status Installments">Clear Sale Installments</button>
+            </form>
+            {% else %}
+            <strong class="text-success"><i class="fas fa-check"></i></strong>
+        {% endif %}
+        {% else %}
         {% if record.paid == False %}
             <form class="confirm-form" action="{% url 'installment.payment' record.id %}" method="post">
                 {% csrf_token %}
@@ -52,10 +68,11 @@ class InstallmentScheduleTable(tables.Table):
             {% else %}
                 <strong class="text-success">Paid</strong>
             {% endif %}
-        {% else %}
-            <strong class="text-success"><i class="fas fa-check"></i></strong>
     {% endif %}
     """, verbose_name=_('Installment Payment'))
+
+    # sale_entry__customer = tables.Column(footer="Total")
+    installment_amount = SummingColumn()
     class Meta:
         model = InstallmentSchedule
         fields = ('sale_entry.customer', 'sale_entry.inventory', 'sale_entry.areazone', 'scheduled_date', 'installment_amount', 'sale_entry__balance')
@@ -179,6 +196,22 @@ def save(request):
         return render(request, 'layout/bootstrap.html', {"page":page})
         
     return redirect('sale.entry.add')
+
+    
+
+def updateStatustoPaid(request):
+    if request.method == "POST":
+        
+        form = request.POST
+        sale_entry = form["sale_entry"]
+        print(sale_entry)
+        sch_ins = InstallmentSchedule.objects.filter(sale_entry=sale_entry).update(paid=True)
+        sweetify.success(request, _('Successfull Done'), timer=2000)
+        return redirect(request.META.get('HTTP_REFERER'))
+        
+        
+    sweetify.warning(request, _('Only Post Method Allowed'), timer=2000)
+    return redirect(request.META.get('HTTP_REFERER'))
 
     
 

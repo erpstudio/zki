@@ -3,7 +3,7 @@
 {% block table-wrapper %}
     <div class="table-responsive" >
         {% block table %}
-        <table class="table">
+        <table class="table table-hover">
             {% block table.thead %}
             <thead>
                 {% for column in table.columns %}
@@ -40,9 +40,9 @@
             {% block table.tfoot %}
                 {% if table.has_footer %}
                     <tfoot {{ table.attrs.tfoot.as_html }}>
-                    <tr>
+                    <tr class="table-active">
                         {% for column in table.columns %}
-                            <td {{ column.attrs.tf.as_html }}>{{ column.footer }}</td>
+                            <th {{ column.attrs.tf.as_html }}>{{ column.footer }}</th>
                         {% endfor %}
                     </tr>
                     </tfoot>

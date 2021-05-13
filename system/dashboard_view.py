@@ -69,8 +69,8 @@ def index(request):
     dataset = []
     labels = []
 
-    paid_true = sch_installment.values('sale_entry__areazone__name').filter(paid=True).filter(scheduled_date=dt.date.today()).annotate(Sum('scheduledinstallmentpayment__paid_amount'))
-    group_by_area_total = sch_installment.values('sale_entry__areazone__name').filter(scheduled_date=dt.date.today()).annotate(Sum('installment_amount'))
+    paid_true = sch_installment.values('sale_entry__areazone__name').filter(paid=True).filter(scheduled_date=dt.date.today()).annotate(Sum('scheduledinstallmentpayment__paid_amount')).order_by('-sale_entry__areazone__name')
+    group_by_area_total = sch_installment.values('sale_entry__areazone__name').filter(scheduled_date=dt.date.today()).annotate(Sum('installment_amount')).order_by('-sale_entry__areazone__name')
     
     values = []
     dataset_item = {}

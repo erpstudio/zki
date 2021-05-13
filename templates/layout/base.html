@@ -168,6 +168,15 @@
               </p>
             </a>
           </li>
+          <li class="nav-header">{% trans 'Reports' %}</li>
+          <li class="nav-item">
+            <a href="{% url 'installment.report.index' %}" class="nav-link">
+              <i class="nav-icon fas fa-file"></i>
+              <p>
+                {% trans 'Filter Report' %}
+              </p>
+            </a>
+          </li>
           <li class="nav-header">{% trans 'Setting' %}</li>
           </li><li class="nav-item has-treeview">
             <a href="#" class="nav-link">
@@ -247,7 +256,7 @@
     <strong>{% trans 'Copyright'%} &copy; 2019-{% now "Y" %} <a href="#">erpStudio</a>.</strong>
     {% trans 'All rights reserved.'%}
     <div class="float-right d-none d-sm-inline-block">
-      <b>{% trans 'Version'%}</b> B.0.0.1
+      <b>{% trans 'Version'%}</b> 0.0.1
     </div>
   </footer>
 
