@@ -26,7 +26,7 @@ $(document).ready(function() {
                     $(win.document.body)
                         .css( 'font-size', '10pt' )
                         .prepend(
-                            '<div style="position:absolute; bottom:0; left:50%;"> by erpStudio </div>'
+                            '<div style="position:absolute; bottom:0px; left:50%;"> {{ settings.APP_PRINT_LABEL }} </div>'
                         );
  
                     $(win.document.body).find( 'table' )

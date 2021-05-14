@@ -150,7 +150,9 @@ STATICFILES_DIRS = [
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 APP_LABEL = _("erpStudio")
+APP_PRINT_LABEL = _("erpStudio")
 
 SETTINGS_EXPORT = [
     'APP_LABEL',
+    'APP_PRINT_LABEL',
 ]

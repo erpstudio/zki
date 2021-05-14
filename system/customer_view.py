@@ -24,7 +24,7 @@ class CustomerForm(forms.ModelForm):
     
 
 ACTIONS = '''
-   <div class="btn-group"> 
+   <div class="btn-group d-print-none"> 
    <a class="btn btn-primary" href="{% url 'customer.update' record.id %}">Edit</a>
    <a class="btn btn-info" href="{% url 'customer.show' record.id %}">View</a>
    <a class="btn btn-danger" href="{% url 'customer.delete' record.id %}">Delete</a>
