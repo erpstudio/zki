@@ -1,9 +1,61 @@
 {% load django_tables2 %}
 {% load i18n %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'datatable/dataTables.bootstrap4.min.css' %}">
+<link rel="stylesheet" href="{% static 'datatable/buttons.bootstrap.css' %}">
+<script src="{% static 'datatable/jquery.dataTables.min.js' %}"> </script>
+<script src="{% static 'datatable/dataTables.bootstrap4.js' %}"></script>
+<script src="{% static 'datatable/dataTables.buttons.js' %}"> </script>
+<script src="{% static 'datatable/buttons.bootstrap4.js' %}"> </script>
+<script src="{% static 'datatable/buttons.html5.js' %}"> </script>
+<script src="{% static 'datatable/buttons.print.min.js' %}"> </script>
+
+<script>
+$(document).ready(function() {
+  $(".datatable").DataTable({
+    aaSorting: [],
+    responsive: true,
+    "dom": '<"row"<"col-lg-3"B><"col-lg-3"f><"col-lg-3"l><"col-lg-3"p>>rtip',
+			"paging": true,
+			"autoWidth": true,
+			"buttons": [
+        'csvHtml5',
+        {
+            extend: 'print',
+                customize: function ( win ) {
+                    $(win.document.body)
+                        .css( 'font-size', '10pt' )
+                        .prepend(
+                            '<div style="position:absolute; bottom:0; left:50%;"> by erpStudio </div>'
+                        );
+ 
+                    $(win.document.body).find( 'table' )
+                        .addClass( 'compact' )
+                        .css( 'font-size', 'inherit' );
+                }
+        }
+			],
+    columnDefs: [
+      {
+        responsivePriority: 1,
+        targets: 0
+      },
+      {
+        responsivePriority: 2,
+        targets: -1
+      }
+    ]
+  });
+
+  $(".dataTables_filter input")
+    .attr("placeholder", "Search here...")
+});
+
+</script>
 {% block table-wrapper %}
     <div class="table-responsive" >
         {% block table %}
-        <table class="table table-hover">
+        <table class="table table-hover datatable">
             {% block table.thead %}
             <thead>
                 {% for column in table.columns %}
