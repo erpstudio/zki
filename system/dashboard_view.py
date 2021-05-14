@@ -99,12 +99,12 @@ def index(request):
         if matched == False: values_r.append(0)
         matched = False
 
-    dataset_item_t["label"] = "Total"
+    dataset_item_t["label"] = _("Total")
     dataset_item_t["data"] = values_t
     dataset_item_t["backgroundColor"] = "#d8dee8"
     dataset.append(dataset_item_t)
 
-    dataset_item_r["label"] = "Recieved"
+    dataset_item_r["label"] = _("Recieved")
     dataset_item_r["data"] = values_r
     dataset_item_r["backgroundColor"] = "#45c490"
     dataset.append(dataset_item_r)

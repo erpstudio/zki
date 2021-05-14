@@ -18,12 +18,12 @@ ACTIONS = '''
 
 
 class FilterForm(forms.Form):
-    from_date = forms.DateField(widget=forms.TextInput(attrs={'type':'date'}))
-    to_date = forms.DateField(widget=forms.TextInput(attrs={'type':'date'}))
+    from_date = forms.DateField(widget=forms.TextInput(attrs={'type':'date'}), label=_("From Date"))
+    to_date = forms.DateField(widget=forms.TextInput(attrs={'type':'date'}), label=_("To Date"))
     report_type = forms.ChoiceField(choices = (
-        ("1", "Recieved"),
-        ("0", "Pending"),
-    ))
+        ("1", _("Recieved")),
+        ("0", _("Pending")),
+    ), label=_("Report Type"))
 
 class SummingColumn(tables.Column):
     def render_footer(self, bound_column, table):
@@ -42,7 +42,7 @@ page_title = _("Installments")
 def index(request):
     page = {}
     page["page_title"]= page_title
-    list_title = "Report"
+    list_title = _("Report")
     page["nav_links"] = {}
     page["nav_links"]["add"] = { "label":_("Sale Entry"), "link":"sale.entry.add"}
     page["nav_links"]["list"] = { "label":_("Sale List"), "link":"sale.entry.list"}

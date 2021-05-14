@@ -3,12 +3,12 @@
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
-#
+#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-05-06 07:01+0500\n"
+"POT-Creation-Date: 2021-05-15 03:33+0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,193 +18,276 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: app/settings.py:125
-msgid "English"
-msgstr ""
-
 #: app/settings.py:126
+msgid "English"
+msgstr "انگلش"
+
+#: app/settings.py:127
 msgid "Urdu"
-msgstr ""
+msgstr "اردو"
 
-#: installment/installment_view.py:27
-msgid "Sale ID"
-msgstr ""
-
-#: installment/installment_view.py:32
-msgid "Pay Installment"
-msgstr ""
-
-#: installment/installment_view.py:38
-msgid "Installments"
-msgstr ""
-
-#: installment/installment_view.py:44 installment/models.py:54
-#: installment/saleentry_view.py:49
-msgid "Sale Entry"
-msgstr ""
+#: app/settings.py:152 app/settings.py:153 templates/layout/base.html:88
+msgid "erpStudio"
+msgstr "ای آر پی سٹوڈیو"
 
 #: installment/installment_view.py:45
+msgid "Sale ID"
+msgstr "سیل نمبر"
+
+#: installment/installment_view.py:72
+msgid "Installment Payment"
+msgstr "انسٹالمینٹ"
+
+#: installment/installment_view.py:81 installment/report_view.py:40
+msgid "Installments"
+msgstr "انسٹالمینٹس"
+
+#: installment/installment_view.py:88 installment/installment_view.py:118
+#: installment/models.py:59 installment/report_view.py:47
+#: installment/saleentry_view.py:49
+msgid "Sale Entry"
+msgstr "سیل اینٹرِی"
+
+#: installment/installment_view.py:89 installment/installment_view.py:119
+#: installment/report_view.py:48
 msgid "Sale List"
-msgstr ""
+msgstr "سیل لسٹ"
 
-#: installment/installment_view.py:48 templates/layout/base.html:64
+#: installment/installment_view.py:92 installment/installment_view.py:122
+msgid "Filter By Area"
+msgstr "چھانٹیں زون سے"
+
+#: installment/installment_view.py:97 templates/layout/base.html:64
 msgid "Today Installments"
-msgstr ""
+msgstr "آج کی انسٹالمینٹس"
 
-#: installment/installment_view.py:63 installment/saleentry_view.py:55
+#: installment/installment_view.py:127 system/customer_view.py:113
+#: templates/layout/base.html:67
+msgid "Pending Installments"
+msgstr "نا دی گٰی انسٹالمینٹس"
+
+#: installment/installment_view.py:164 installment/saleentry_view.py:55
 #: installment/saleentry_view.py:78 installment/saleentry_view.py:94
 #: purchase/purchase_view.py:43 purchase/purchase_view.py:64
 #: purchase/purchase_view.py:80
 msgid "Add Entry"
-msgstr ""
+msgstr "اینٹرِی کرے"
 
-#: installment/installment_view.py:64 installment/saleentry_view.py:56
-#: installment/saleentry_view.py:79 installment/saleentry_view.py:82
-#: installment/saleentry_view.py:95 purchase/purchase_view.py:44
-#: purchase/purchase_view.py:65 purchase/purchase_view.py:68
-#: purchase/purchase_view.py:81
+#: installment/installment_view.py:165 installment/saleentry_view.py:56
+#: installment/saleentry_view.py:79 installment/saleentry_view.py:95
+#: purchase/purchase_view.py:44 purchase/purchase_view.py:65
+#: purchase/purchase_view.py:68 purchase/purchase_view.py:81
 msgid "Entry List"
-msgstr ""
+msgstr "اینٹرِی لسٹ"
 
-#: installment/installment_view.py:67 installment/saleentry_view.py:98
-#: purchase/purchase_view.py:84
-msgid "Transaction#: {}"
-msgstr ""
+#: installment/installment_view.py:169 purchase/purchase_view.py:85
+msgid "Transaction#"
+msgstr "ٹرانزیکشن"
 
-#: installment/installment_view.py:70 installment/saleentry_view.py:101
-#: purchase/purchase_view.py:87
-msgid "vendor"
-msgstr ""
-
-#: installment/installment_view.py:71 installment/saleentry_view.py:102
+#: installment/installment_view.py:172 installment/saleentry_view.py:101
 #: purchase/purchase_view.py:88
-msgid "inventory"
-msgstr ""
+msgid "vendor"
+msgstr "وینڈر"
 
-#: installment/installment_view.py:72
-msgid "installment_interval_days"
-msgstr ""
-
-#: installment/installment_view.py:73 installment/saleentry_view.py:104
-msgid "installment_amount"
-msgstr ""
-
-#: installment/installment_view.py:74 installment/saleentry_view.py:105
+#: installment/installment_view.py:173 installment/saleentry_view.py:102
 #: purchase/purchase_view.py:89
-msgid "unit_price"
-msgstr ""
+msgid "inventory"
+msgstr "اینوینٹری"
 
-#: installment/installment_view.py:75 installment/saleentry_view.py:106
+#: installment/installment_view.py:174
+msgid "installment_interval_days"
+msgstr "انسٹالمینٹ وقفہ"
+
+#: installment/installment_view.py:175 installment/saleentry_view.py:104
+msgid "installment_amount"
+msgstr "انسٹالمینٹ اماوٰنٹ"
+
+#: installment/installment_view.py:176 installment/saleentry_view.py:105
 #: purchase/purchase_view.py:90
-msgid "quantity"
-msgstr ""
+msgid "unit_price"
+msgstr "ینٹ پرایز"
 
-#: installment/installment_view.py:76 installment/saleentry_view.py:107
+#: installment/installment_view.py:177 installment/saleentry_view.py:106
 #: purchase/purchase_view.py:91
-msgid "total_amount"
-msgstr ""
+msgid "quantity"
+msgstr "مقدار"
 
-#: installment/installment_view.py:91 installment/saleentry_view.py:122
-#: purchase/purchase_view.py:106 settings/areaZone_view.py:106
+#: installment/installment_view.py:178 installment/saleentry_view.py:107
+#: purchase/purchase_view.py:92
+msgid "total_amount"
+msgstr "ٹوٹل اماوٰنٹ"
+
+#: installment/installment_view.py:193 installment/saleentry_view.py:123
+#: purchase/purchase_view.py:107 settings/areaZone_view.py:106
 #: settings/inventoryCat_view.py:106 settings/inventoryUnit_view.py:106
-#: settings/vendorCat_view.py:106 system/customer_view.py:114
+#: settings/vendorCat_view.py:106 system/customer_view.py:126
 #: system/employee_view.py:117 system/inventory_view.py:115
 #: system/vendor_view.py:115
 msgid "Saved Successfull"
-msgstr ""
+msgstr "کامیاب محفوظ کریں"
 
-#: installment/models.py:13 system/customer_view.py:36
-#: templates/layout/base.html:143
+#: installment/installment_view.py:210
+msgid "Successfull Done"
+msgstr "کامیاب ہو گیا"
+
+#: installment/installment_view.py:214
+msgid "Only Post Method Allowed"
+msgstr "سرور ایرر"
+
+#: installment/models.py:14 system/customer_view.py:40
+#: templates/layout/base.html:147
 msgid "Customer"
-msgstr ""
+msgstr "کسٹمر"
 
-#: installment/models.py:14 purchase/models.py:9 system/inventory_view.py:39
-#: templates/layout/base.html:151 templates/layout/base.html:184
+#: installment/models.py:15 purchase/models.py:9 system/inventory_view.py:39
+#: templates/layout/base.html:155 templates/layout/base.html:197
 #: templates/system/inventory/index.html:5
 msgid "Inventory"
-msgstr ""
+msgstr "اینوینٹری"
 
-#: installment/models.py:15 system/models.py:58 system/models.py:71
-#: templates/layout/base.html:202
+#: installment/models.py:16 system/models.py:58 system/models.py:71
+#: templates/layout/base.html:215
 msgid "Area Zone"
-msgstr ""
+msgstr "زون"
 
-#: installment/models.py:16 purchase/models.py:10
+#: installment/models.py:17 purchase/models.py:10
 msgid "Unit Price"
-msgstr ""
+msgstr "ینٹ پرایز"
 
-#: installment/models.py:17 purchase/models.py:11
+#: installment/models.py:18 purchase/models.py:11
 msgid "Quantity"
-msgstr ""
+msgstr "مقدار"
 
-#: installment/models.py:18 purchase/models.py:12
+#: installment/models.py:19 purchase/models.py:12
 msgid "Total Amount"
-msgstr ""
+msgstr "ٹوٹل اماوٰنٹ"
 
-#: installment/models.py:19
+#: installment/models.py:20 system/models.py:40 system/models.py:57
+#: system/models.py:70
+msgid "Balance"
+msgstr "بیلنس"
+
+#: installment/models.py:21
 msgid "Installment Started From"
-msgstr ""
-
-#: installment/models.py:20
-msgid "Installment Cycle Days"
-msgstr ""
-
-#: installment/models.py:21 installment/models.py:55
-msgid "Installment Amount"
-msgstr ""
+msgstr "انسٹالمینٹ شروع تاریخ"
 
 #: installment/models.py:22
-msgid "Total Installments"
-msgstr ""
+msgid "Installment Cycle Days"
+msgstr "انسٹالمینٹ وقفہ دن"
 
-#: installment/models.py:56
-msgid "Paying Date"
-msgstr "جمع کرنے تاریخ"
+#: installment/models.py:23 installment/models.py:60
+msgid "Installment Amount"
+msgstr "انسٹالمینٹ اماوٰنٹ"
+
+#: installment/models.py:24
+msgid "Total Installments"
+msgstr "ٹوٹل انسٹالمینٹس"
 
 #: installment/models.py:61
-msgid "Scheduled Installment"
-msgstr ""
+msgid "Paying Date"
+msgstr "ادا کرنا کی تاریخ"
 
 #: installment/models.py:62
-msgid "Paid Amount"
-msgstr "قیمت"
+msgid "Paid"
+msgstr "ادا کیا"
 
-#: installment/models.py:63
+#: installment/models.py:67
+msgid "Scheduled Installment"
+msgstr "آنے والی انسٹالمینٹ"
+
+#: installment/models.py:68
+msgid "Paid Amount"
+msgstr "ادا شدہ اماوٰنٹ"
+
+#: installment/models.py:69
 msgid "Paid Date"
-msgstr "جمع کی تاریخ"
+msgstr "ادا کی تاریخ"
+
+#: installment/report_view.py:21
+msgid "From Date"
+msgstr "شروع تاریخ"
+
+#: installment/report_view.py:22
+msgid "To Date"
+msgstr "آخر تاریخ"
+
+#: installment/report_view.py:24 system/dashboard_view.py:27
+#: system/dashboard_view.py:41 system/dashboard_view.py:58
+#: system/dashboard_view.py:107
+msgid "Recieved"
+msgstr "حاصل کردہ"
+
+#: installment/report_view.py:25 installment/report_view.py:66
+#: system/dashboard_view.py:27 system/dashboard_view.py:41
+#: system/dashboard_view.py:58
+msgid "Pending"
+msgstr "نا ادا کی گٰی"
+
+#: installment/report_view.py:26
+msgid "Report Type"
+msgstr "ریپورٹ قسم"
+
+#: installment/report_view.py:45
+msgid "Report"
+msgstr "ریپورٹ"
+
+#: installment/report_view.py:51
+msgid "Filter"
+msgstr "فیلٹر"
+
+#: installment/report_view.py:56
+msgid "Area Report"
+msgstr "زون ریپورٹ"
+
+#: installment/report_view.py:66
+msgid "Report Recieved"
+msgstr "ادا شدہ ریپورٹ"
 
 #: installment/saleentry_view.py:30
 msgid "Installment Amount can't be greater then Total Amount"
-msgstr ""
+msgstr "انسٹالمینٹ اماوٰنٹ ٹوٹل اماوٰنٹ سے زیادہ نیہں ہو سکتا"
 
 #: installment/saleentry_view.py:62
 msgid "Sale"
+msgstr "سیل"
+
+#: installment/saleentry_view.py:82
+msgid "Sale Entry List"
+msgstr "سیل اینٹرِی لسٹ"
+
+#: installment/saleentry_view.py:98
+msgid "Transaction#: {}"
 msgstr ""
 
 #: installment/saleentry_view.py:103
 msgid "installment_cycle"
-msgstr ""
+msgstr "انسٹالمینٹ وقفہ"
 
-#: purchase/models.py:8 system/vendor_view.py:39 templates/layout/base.html:159
-#: templates/layout/base.html:190
+#: installment/saleentry_view.py:108 system/customer_view.py:105
+#: system/vendor_view.py:100
+msgid "balance"
+msgstr "بیلنس"
+
+#: purchase/models.py:8 system/vendor_view.py:39 templates/layout/base.html:163
+#: templates/layout/base.html:203
 msgid "Vendor"
-msgstr ""
+msgstr "وینڈر"
 
 #: purchase/models.py:13
 msgid "Date"
-msgstr ""
+msgstr "تاریخ"
 
 #: purchase/purchase_view.py:37
 msgid "Purchase Entry"
-msgstr ""
+msgstr "خریدنے کی اینٹرِی"
 
 #: purchase/purchase_view.py:50 templates/layout/base.html:58
 msgid "Purchase"
-msgstr ""
+msgstr "خرید"
 
 #: settings/areaZone_view.py:17 settings/inventoryCat_view.py:17
 #: settings/inventoryUnit_view.py:17 settings/vendorCat_view.py:17
-#: system/customer_view.py:17 system/employee_view.py:17
+#: system/customer_view.py:21 system/employee_view.py:17
 #: system/inventory_view.py:17 system/models.py:7 system/models.py:21
 #: system/models.py:34 system/models.py:51 system/models.py:64
 #: system/vendor_view.py:17
@@ -213,281 +296,308 @@ msgstr "نام"
 
 #: settings/areaZone_view.py:37 system/models.py:27
 msgid "AreaZone"
-msgstr ""
+msgstr "زون"
 
 #: settings/areaZone_view.py:60
 msgid "Add AreaZone"
-msgstr ""
+msgstr "ایڈ زون"
 
 #: settings/areaZone_view.py:74
 msgid "AreaZone List"
-msgstr ""
+msgstr "زون لسٹ"
 
 #: settings/areaZone_view.py:123
 msgid "Edit AreaZone"
-msgstr ""
+msgstr "زون ترمیم"
 
 #: settings/areaZone_view.py:131 settings/inventoryCat_view.py:131
 #: settings/inventoryUnit_view.py:131 settings/vendorCat_view.py:131
-#: system/customer_view.py:141 system/employee_view.py:146
+#: system/customer_view.py:153 system/employee_view.py:146
 #: system/inventory_view.py:145 system/vendor_view.py:140
 msgid "Updated Successfull"
-msgstr ""
+msgstr "کامیابی کے ساتھ اپ ڈیٹ کریں"
 
 #: settings/areaZone_view.py:134 settings/inventoryCat_view.py:134
 #: settings/inventoryUnit_view.py:134 settings/vendorCat_view.py:134
 #: system/inventory_view.py:148 system/vendor_view.py:143
 msgid "Action Error"
-msgstr ""
+msgstr "ایکشن ایرر"
 
 #: settings/areaZone_view.py:143 settings/inventoryCat_view.py:143
 #: settings/inventoryUnit_view.py:143 settings/vendorCat_view.py:143
-#: system/customer_view.py:150 system/employee_view.py:155
+#: system/customer_view.py:162 system/employee_view.py:155
 #: system/inventory_view.py:157 system/vendor_view.py:152
 msgid "Deleted Successfull"
-msgstr ""
+msgstr "کامیابی کے ساتھ حذف ہوا"
 
 #: settings/inventoryCat_view.py:37
 msgid "Inventory Category"
-msgstr ""
+msgstr "اینوینٹری کی قسم"
 
 #: settings/inventoryCat_view.py:60 settings/vendorCat_view.py:60
 msgid "Add Category"
-msgstr ""
+msgstr "قسم شامل کریں"
 
 #: settings/inventoryCat_view.py:74 settings/vendorCat_view.py:74
 msgid "Category List"
-msgstr ""
+msgstr "قسم کی لسٹ"
 
 #: settings/inventoryCat_view.py:123 settings/vendorCat_view.py:123
 msgid "Edit Category"
-msgstr ""
+msgstr "قسم کی ترمیم"
 
 #: settings/inventoryUnit_view.py:37
 msgid "Inventory Unit"
-msgstr ""
+msgstr "اینوینٹری ینٹ"
 
 #: settings/inventoryUnit_view.py:60
 msgid "Add Unit"
-msgstr ""
+msgstr "ینٹ شامل کریں"
 
 #: settings/inventoryUnit_view.py:74
 msgid "Unit List"
-msgstr ""
+msgstr "ینٹ کی لسٹ"
 
 #: settings/inventoryUnit_view.py:123
 msgid "Edit Unit"
-msgstr ""
+msgstr "ینٹ کی ترمیم"
 
 #: settings/vendorCat_view.py:37
 msgid "Vendor Category"
-msgstr ""
+msgstr "وینڈر کی قسم"
 
-#: system/customer_view.py:42 system/customer_view.py:48
-#: system/customer_view.py:58 system/customer_view.py:73
-#: system/customer_view.py:89 system/customer_view.py:126
+#: system/customer_view.py:46 system/customer_view.py:52
+#: system/customer_view.py:62 system/customer_view.py:77
+#: system/customer_view.py:93 system/customer_view.py:138
 msgid "Add Customer"
-msgstr ""
+msgstr "ایڈ کسٹمر"
 
-#: system/customer_view.py:43 system/customer_view.py:59
-#: system/customer_view.py:74 system/customer_view.py:77
-#: system/customer_view.py:90 system/customer_view.py:127
+#: system/customer_view.py:47 system/customer_view.py:63
+#: system/customer_view.py:78 system/customer_view.py:81
+#: system/customer_view.py:94 system/customer_view.py:139
 msgid "Customer List"
-msgstr ""
+msgstr "کسٹمر لسٹ"
 
-#: system/customer_view.py:96 system/employee_view.py:99
+#: system/customer_view.py:102 system/employee_view.py:99
 #: system/vendor_view.py:99
 msgid "mobile"
-msgstr ""
+msgstr "موبایل"
 
-#: system/customer_view.py:97 system/employee_view.py:100
+#: system/customer_view.py:103 system/employee_view.py:100
 #: system/vendor_view.py:98
 msgid "cnic"
-msgstr ""
+msgstr "شناختی کارڈ"
 
-#: system/customer_view.py:98 system/employee_view.py:101
+#: system/customer_view.py:104 system/employee_view.py:101
 #: system/vendor_view.py:97
 msgid "address"
-msgstr ""
+msgstr "ایڈریس"
 
-#: system/customer_view.py:99 system/vendor_view.py:100
-msgid "balance"
-msgstr ""
-
-#: system/customer_view.py:133
+#: system/customer_view.py:145
 msgid "Edit Customer"
-msgstr ""
+msgstr "کسٹمر کی ترمیم"
 
-#: system/employee_view.py:39 templates/layout/base.html:167
+#: system/dashboard_view.py:22
+msgid "Today"
+msgstr "آج"
+
+#: system/dashboard_view.py:27 system/dashboard_view.py:41
+#: system/dashboard_view.py:58 system/dashboard_view.py:102
+msgid "Total"
+msgstr "ٹوٹل"
+
+#: system/dashboard_view.py:36
+msgid "Overall"
+msgstr "ٹوٹل"
+
+#: system/dashboard_view.py:50
+msgid "Today Recovery"
+msgstr "آج کی ریکوری"
+
+#: system/dashboard_view.py:67
+msgid "Today Reccovery By Area"
+msgstr "آج کی ریکوری بذریعہ زون"
+
+#: system/employee_view.py:39 templates/layout/base.html:171
 msgid "Employee"
-msgstr ""
+msgstr "ایمپلوے"
 
 #: system/employee_view.py:51
 msgid "Add Employee"
-msgstr ""
+msgstr "ایڈ ایمپلوے"
 
 #: system/employee_view.py:80
 msgid "Employee List"
-msgstr ""
+msgstr "ایمپلوے لسٹ"
 
 #: system/employee_view.py:102
 msgid "salary"
-msgstr ""
+msgstr "سیلری"
 
 #: system/employee_view.py:138
 msgid "Edit Employee"
-msgstr ""
+msgstr "ایمپلوے ترمیم"
 
 #: system/inventory_view.py:51
 msgid "Add Inventory"
-msgstr ""
+msgstr "ایڈ اینوینٹری"
 
 #: system/inventory_view.py:78
 msgid "Inventory List"
-msgstr ""
+msgstr "اینوینٹری لسٹ"
 
 #: system/inventory_view.py:97 system/vendor_view.py:96
 msgid "category"
-msgstr ""
+msgstr "کیٹیگری"
 
 #: system/inventory_view.py:98
 msgid "purchase_price"
-msgstr ""
+msgstr "خریدنے کی قیمت"
 
 #: system/inventory_view.py:99
 msgid "sale_price"
-msgstr ""
+msgstr "بیچنے کی قیمت"
 
 #: system/inventory_view.py:100
 msgid "in_stock"
-msgstr ""
+msgstr "اسٹاک"
 
 #: system/inventory_view.py:137
 msgid "Edit Inventory"
-msgstr ""
+msgstr "اینوینٹری ترمیم"
 
 #: system/models.py:8
 msgid "Unit"
-msgstr ""
+msgstr "ینٹ"
 
-#: system/models.py:9 system/models.py:39 templates/layout/base.html:190
+#: system/models.py:9 system/models.py:39 templates/layout/base.html:203
 msgid "Category"
-msgstr ""
+msgstr "کیٹیگری"
 
 #: system/models.py:10
 msgid "Purchase Price"
-msgstr ""
+msgstr "خریدنے کی قیمت"
 
 #: system/models.py:11
 msgid "Sale Price"
-msgstr ""
+msgstr "بیچنے کی قیمت"
 
 #: system/models.py:12
 msgid "In Stock"
-msgstr ""
+msgstr "اسٹاک"
 
 #: system/models.py:22 system/models.py:35 system/models.py:52
 #: system/models.py:65
 msgid "Father Name"
-msgstr ""
+msgstr "باپ کا نام"
 
 #: system/models.py:23 system/models.py:36 system/models.py:66
 msgid "CNIC"
-msgstr ""
+msgstr "شناختی کارڈ"
 
 #: system/models.py:24 system/models.py:37 system/models.py:67
 msgid "Mobile"
-msgstr ""
+msgstr "موبایل"
 
 #: system/models.py:25 system/models.py:38 system/models.py:53
 #: system/models.py:54 system/models.py:55 system/models.py:68
 msgid "Address"
-msgstr ""
+msgstr "پتہ"
 
 #: system/models.py:26
 msgid "Salary"
 msgstr ""
 
-#: system/models.py:40 system/models.py:57 system/models.py:70
-msgid "Balance"
-msgstr ""
-
 #: system/models.py:56 system/models.py:69
 msgid "Occupation"
-msgstr ""
+msgstr "پیشہ"
 
 #: system/vendor_view.py:62
 msgid "Add Vendor"
-msgstr ""
+msgstr "ایڈ وینڈر"
 
 #: system/vendor_view.py:76
 msgid "Vendor List"
-msgstr ""
+msgstr "وینڈر لسٹ"
 
 #: system/vendor_view.py:132
 msgid "Edit Vendor"
-msgstr ""
+msgstr "وینڈر ترمیم"
 
-#: templates/django_tables2/datatable.html:64
+#: templates/django_tables2/datatable.html:116
 msgid "previous"
-msgstr ""
+msgstr "پیچھے"
 
-#: templates/django_tables2/datatable.html:84
+#: templates/django_tables2/datatable.html:136
 msgid "next"
-msgstr ""
-
-#: templates/layout/base.html:8 templates/layout/base.html:84
-msgid "erpStudio"
-msgstr "ای آر پی سٹوڈیو"
+msgstr "آگے"
 
 #: templates/layout/base.html:61
 msgid "Installement Sale"
-msgstr ""
+msgstr "انسٹالمینٹ سیل"
 
-#: templates/layout/base.html:71
-msgid "Search"
-msgstr ""
-
-#: templates/layout/base.html:135
+#: templates/layout/base.html:139
 msgid "Dashboard"
-msgstr ""
+msgstr "ڈیش بورڈ"
 
-#: templates/layout/base.html:171
+#: templates/layout/base.html:175
+msgid "Reports"
+msgstr "ّریپورٹ"
+
+#: templates/layout/base.html:180
+msgid "Filter Report"
+msgstr "زون ریپورٹ"
+
+#: templates/layout/base.html:184
 msgid "Setting"
-msgstr ""
+msgstr "سیٹنگ"
 
-#: templates/layout/base.html:176 templates/layout/base.html:184
+#: templates/layout/base.html:189 templates/layout/base.html:197
 msgid "Categories"
-msgstr ""
+msgstr "کیٹیگریز"
 
-#: templates/layout/base.html:196
+#: templates/layout/base.html:209
 msgid "Units"
-msgstr ""
+msgstr "ینٹ"
 
-#: templates/layout/base.html:221
+#: templates/layout/base.html:234
 msgid "page_title"
-msgstr ""
+msgstr "پیج ٹایٹل"
 
-#: templates/layout/base.html:248
+#: templates/layout/base.html:261
 msgid "Copyright"
-msgstr ""
+msgstr "کاپی رایٹ"
 
-#: templates/layout/base.html:249
+#: templates/layout/base.html:262
 msgid "All rights reserved."
-msgstr ""
+msgstr "جملہ حقوق محفوظ ہیں"
 
-#: templates/layout/base.html:251
+#: templates/layout/base.html:264
 msgid "Version"
+msgstr "ورژن"
+
+#: templates/layout/base.html:371
+msgid "Are you sure?"
 msgstr ""
 
-#: templates/layout/include/form_card.html:43
+#: templates/layout/base.html:372
+msgid "Yes"
+msgstr ""
+
+#: templates/layout/base.html:373
+msgid "No"
+msgstr ""
+
+#: templates/layout/include/form_card.html:33
+msgid "Submit"
+msgstr "سبمٹ"
+
+#: templates/layout/include/form_card.html:39
 #: templates/layout/include/purchase_form.html:41
 #: templates/layout/include/table_card.html:24
 msgid "Empty Card"
-msgstr ""
+msgstr "خالی"
 
-#~ msgid "Home"
-#~ msgstr "گھد"
-
-#~ msgid "Your name"
-#~ msgstr "آپ کا نام"
+#: templates/layout/include/info_color_card.html:12
+msgid "More info"
+msgstr "زیادہ"

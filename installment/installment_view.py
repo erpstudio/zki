@@ -165,7 +165,8 @@ def show(request, id):
     page["nav_links"]["list"] = { "label":_("Entry List"), "link":"sale.entry.list"}
     page["profile"] = {}
     page["profile"]["type"] = "profile"
-    page["profile"]["title"] = _("Transaction#: {}").format(instance.id)
+    id = instance.id
+    page["profile"]["title"] = "{}: {}".format(_("Transaction#"), id)
     
     data = {}
     data[_("vendor")] = instance.customer

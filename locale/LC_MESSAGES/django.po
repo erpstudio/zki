@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-04-16 20:31+0500\n"
+"POT-Creation-Date: 2021-05-15 01:50+0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,10 +17,564 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: templates/layout/base.html:41
-msgid "Home"
-msgstr "swdsddsds"
+#: app/settings.py:126
+msgid "English"
+msgstr ""
 
-#: templates/layout/base.html:44
+#: app/settings.py:127
+msgid "Urdu"
+msgstr ""
+
+#: app/settings.py:152 app/settings.py:153 templates/layout/base.html:88
+msgid "erpStudio"
+msgstr ""
+
+#: installment/installment_view.py:45
+msgid "Sale ID"
+msgstr ""
+
+#: installment/installment_view.py:72
+msgid "Installment Payment"
+msgstr ""
+
+#: installment/installment_view.py:81 installment/report_view.py:40
+msgid "Installments"
+msgstr ""
+
+#: installment/installment_view.py:88 installment/installment_view.py:118
+#: installment/models.py:59 installment/report_view.py:47
+#: installment/saleentry_view.py:49
+msgid "Sale Entry"
+msgstr ""
+
+#: installment/installment_view.py:89 installment/installment_view.py:119
+#: installment/report_view.py:48
+msgid "Sale List"
+msgstr ""
+
+#: installment/installment_view.py:92 installment/installment_view.py:122
+msgid "Filter By Area"
+msgstr ""
+
+#: installment/installment_view.py:97 templates/layout/base.html:64
+msgid "Today Installments"
+msgstr ""
+
+#: installment/installment_view.py:127 system/customer_view.py:113
+#: templates/layout/base.html:67
+msgid "Pending Installments"
+msgstr ""
+
+#: installment/installment_view.py:164 installment/saleentry_view.py:55
+#: installment/saleentry_view.py:78 installment/saleentry_view.py:94
+#: purchase/purchase_view.py:43 purchase/purchase_view.py:64
+#: purchase/purchase_view.py:80
+msgid "Add Entry"
+msgstr ""
+
+#: installment/installment_view.py:165 installment/saleentry_view.py:56
+#: installment/saleentry_view.py:79 installment/saleentry_view.py:95
+#: purchase/purchase_view.py:44 purchase/purchase_view.py:65
+#: purchase/purchase_view.py:68 purchase/purchase_view.py:81
+msgid "Entry List"
+msgstr ""
+
+#: installment/installment_view.py:168 installment/saleentry_view.py:98
+#: purchase/purchase_view.py:84
+msgid "Transaction#: {}"
+msgstr ""
+
+#: installment/installment_view.py:171 installment/saleentry_view.py:101
+#: purchase/purchase_view.py:87
+msgid "vendor"
+msgstr ""
+
+#: installment/installment_view.py:172 installment/saleentry_view.py:102
+#: purchase/purchase_view.py:88
+msgid "inventory"
+msgstr ""
+
+#: installment/installment_view.py:173
+msgid "installment_interval_days"
+msgstr ""
+
+#: installment/installment_view.py:174 installment/saleentry_view.py:104
+msgid "installment_amount"
+msgstr ""
+
+#: installment/installment_view.py:175 installment/saleentry_view.py:105
+#: purchase/purchase_view.py:89
+msgid "unit_price"
+msgstr ""
+
+#: installment/installment_view.py:176 installment/saleentry_view.py:106
+#: purchase/purchase_view.py:90
+msgid "quantity"
+msgstr ""
+
+#: installment/installment_view.py:177 installment/saleentry_view.py:107
+#: purchase/purchase_view.py:91
+msgid "total_amount"
+msgstr ""
+
+#: installment/installment_view.py:192 installment/saleentry_view.py:123
+#: purchase/purchase_view.py:106 settings/areaZone_view.py:106
+#: settings/inventoryCat_view.py:106 settings/inventoryUnit_view.py:106
+#: settings/vendorCat_view.py:106 system/customer_view.py:126
+#: system/employee_view.py:117 system/inventory_view.py:115
+#: system/vendor_view.py:115
+msgid "Saved Successfull"
+msgstr ""
+
+#: installment/installment_view.py:209
+msgid "Successfull Done"
+msgstr ""
+
+#: installment/installment_view.py:213
+msgid "Only Post Method Allowed"
+msgstr ""
+
+#: installment/models.py:14 system/customer_view.py:40
+#: templates/layout/base.html:147
+msgid "Customer"
+msgstr ""
+
+#: installment/models.py:15 purchase/models.py:9 system/inventory_view.py:39
+#: templates/layout/base.html:155 templates/layout/base.html:197
+#: templates/system/inventory/index.html:5
+msgid "Inventory"
+msgstr ""
+
+#: installment/models.py:16 system/models.py:58 system/models.py:71
+#: templates/layout/base.html:215
+msgid "Area Zone"
+msgstr ""
+
+#: installment/models.py:17 purchase/models.py:10
+msgid "Unit Price"
+msgstr ""
+
+#: installment/models.py:18 purchase/models.py:11
+msgid "Quantity"
+msgstr ""
+
+#: installment/models.py:19 purchase/models.py:12
+msgid "Total Amount"
+msgstr ""
+
+#: installment/models.py:20 system/models.py:40 system/models.py:57
+#: system/models.py:70
+msgid "Balance"
+msgstr ""
+
+#: installment/models.py:21
+msgid "Installment Started From"
+msgstr ""
+
+#: installment/models.py:22
+msgid "Installment Cycle Days"
+msgstr ""
+
+#: installment/models.py:23 installment/models.py:60
+msgid "Installment Amount"
+msgstr ""
+
+#: installment/models.py:24
+msgid "Total Installments"
+msgstr ""
+
+#: installment/models.py:61
+msgid "Paying Date"
+msgstr ""
+
+#: installment/models.py:62
+msgid "Paid"
+msgstr ""
+
+#: installment/models.py:67
+msgid "Scheduled Installment"
+msgstr ""
+
+#: installment/models.py:68
+msgid "Paid Amount"
+msgstr ""
+
+#: installment/models.py:69
+msgid "Paid Date"
+msgstr ""
+
+#: installment/report_view.py:51
+msgid "Filter"
+msgstr ""
+
+#: installment/report_view.py:56
+msgid "Area Report"
+msgstr ""
+
+#: installment/report_view.py:66
+msgid "Report Recieved"
+msgstr ""
+
+#: installment/report_view.py:66 system/dashboard_view.py:27
+#: system/dashboard_view.py:41 system/dashboard_view.py:58
+msgid "Pending"
+msgstr ""
+
+#: installment/saleentry_view.py:30
+msgid "Installment Amount can't be greater then Total Amount"
+msgstr ""
+
+#: installment/saleentry_view.py:62
+msgid "Sale"
+msgstr ""
+
+#: installment/saleentry_view.py:82
+msgid "Sale Entry List"
+msgstr ""
+
+#: installment/saleentry_view.py:103
+msgid "installment_cycle"
+msgstr ""
+
+#: installment/saleentry_view.py:108 system/customer_view.py:105
+#: system/vendor_view.py:100
+msgid "balance"
+msgstr ""
+
+#: purchase/models.py:8 system/vendor_view.py:39 templates/layout/base.html:163
+#: templates/layout/base.html:203
+msgid "Vendor"
+msgstr ""
+
+#: purchase/models.py:13
+msgid "Date"
+msgstr ""
+
+#: purchase/purchase_view.py:37
+msgid "Purchase Entry"
+msgstr ""
+
+#: purchase/purchase_view.py:50 templates/layout/base.html:58
+msgid "Purchase"
+msgstr ""
+
+#: settings/areaZone_view.py:17 settings/inventoryCat_view.py:17
+#: settings/inventoryUnit_view.py:17 settings/vendorCat_view.py:17
+#: system/customer_view.py:21 system/employee_view.py:17
+#: system/inventory_view.py:17 system/models.py:7 system/models.py:21
+#: system/models.py:34 system/models.py:51 system/models.py:64
+#: system/vendor_view.py:17
+msgid "Name"
+msgstr ""
+
+#: settings/areaZone_view.py:37 system/models.py:27
+msgid "AreaZone"
+msgstr ""
+
+#: settings/areaZone_view.py:60
+msgid "Add AreaZone"
+msgstr ""
+
+#: settings/areaZone_view.py:74
+msgid "AreaZone List"
+msgstr ""
+
+#: settings/areaZone_view.py:123
+msgid "Edit AreaZone"
+msgstr ""
+
+#: settings/areaZone_view.py:131 settings/inventoryCat_view.py:131
+#: settings/inventoryUnit_view.py:131 settings/vendorCat_view.py:131
+#: system/customer_view.py:153 system/employee_view.py:146
+#: system/inventory_view.py:145 system/vendor_view.py:140
+msgid "Updated Successfull"
+msgstr ""
+
+#: settings/areaZone_view.py:134 settings/inventoryCat_view.py:134
+#: settings/inventoryUnit_view.py:134 settings/vendorCat_view.py:134
+#: system/inventory_view.py:148 system/vendor_view.py:143
+msgid "Action Error"
+msgstr ""
+
+#: settings/areaZone_view.py:143 settings/inventoryCat_view.py:143
+#: settings/inventoryUnit_view.py:143 settings/vendorCat_view.py:143
+#: system/customer_view.py:162 system/employee_view.py:155
+#: system/inventory_view.py:157 system/vendor_view.py:152
+msgid "Deleted Successfull"
+msgstr ""
+
+#: settings/inventoryCat_view.py:37
+msgid "Inventory Category"
+msgstr ""
+
+#: settings/inventoryCat_view.py:60 settings/vendorCat_view.py:60
+msgid "Add Category"
+msgstr ""
+
+#: settings/inventoryCat_view.py:74 settings/vendorCat_view.py:74
+msgid "Category List"
+msgstr ""
+
+#: settings/inventoryCat_view.py:123 settings/vendorCat_view.py:123
+msgid "Edit Category"
+msgstr ""
+
+#: settings/inventoryUnit_view.py:37
+msgid "Inventory Unit"
+msgstr ""
+
+#: settings/inventoryUnit_view.py:60
+msgid "Add Unit"
+msgstr ""
+
+#: settings/inventoryUnit_view.py:74
+msgid "Unit List"
+msgstr ""
+
+#: settings/inventoryUnit_view.py:123
+msgid "Edit Unit"
+msgstr ""
+
+#: settings/vendorCat_view.py:37
+msgid "Vendor Category"
+msgstr ""
+
+#: system/customer_view.py:46 system/customer_view.py:52
+#: system/customer_view.py:62 system/customer_view.py:77
+#: system/customer_view.py:93 system/customer_view.py:138
+msgid "Add Customer"
+msgstr ""
+
+#: system/customer_view.py:47 system/customer_view.py:63
+#: system/customer_view.py:78 system/customer_view.py:81
+#: system/customer_view.py:94 system/customer_view.py:139
+msgid "Customer List"
+msgstr ""
+
+#: system/customer_view.py:102 system/employee_view.py:99
+#: system/vendor_view.py:99
+msgid "mobile"
+msgstr ""
+
+#: system/customer_view.py:103 system/employee_view.py:100
+#: system/vendor_view.py:98
+msgid "cnic"
+msgstr ""
+
+#: system/customer_view.py:104 system/employee_view.py:101
+#: system/vendor_view.py:97
+msgid "address"
+msgstr ""
+
+#: system/customer_view.py:145
+msgid "Edit Customer"
+msgstr ""
+
+#: system/dashboard_view.py:22
+msgid "Today"
+msgstr ""
+
+#: system/dashboard_view.py:27 system/dashboard_view.py:41
+#: system/dashboard_view.py:58
+msgid "Total"
+msgstr ""
+
+#: system/dashboard_view.py:27 system/dashboard_view.py:41
+#: system/dashboard_view.py:58
+msgid "Recieved"
+msgstr ""
+
+#: system/dashboard_view.py:36
+msgid "Overall"
+msgstr ""
+
+#: system/dashboard_view.py:50
+msgid "Today Recovery"
+msgstr ""
+
+#: system/dashboard_view.py:67
+msgid "Today Reccovery By Area"
+msgstr ""
+
+#: system/employee_view.py:39 templates/layout/base.html:171
+msgid "Employee"
+msgstr ""
+
+#: system/employee_view.py:51
+msgid "Add Employee"
+msgstr ""
+
+#: system/employee_view.py:80
+msgid "Employee List"
+msgstr ""
+
+#: system/employee_view.py:102
+msgid "salary"
+msgstr ""
+
+#: system/employee_view.py:138
+msgid "Edit Employee"
+msgstr ""
+
+#: system/inventory_view.py:51
+msgid "Add Inventory"
+msgstr ""
+
+#: system/inventory_view.py:78
+msgid "Inventory List"
+msgstr ""
+
+#: system/inventory_view.py:97 system/vendor_view.py:96
+msgid "category"
+msgstr ""
+
+#: system/inventory_view.py:98
+msgid "purchase_price"
+msgstr ""
+
+#: system/inventory_view.py:99
+msgid "sale_price"
+msgstr ""
+
+#: system/inventory_view.py:100
+msgid "in_stock"
+msgstr ""
+
+#: system/inventory_view.py:137
+msgid "Edit Inventory"
+msgstr ""
+
+#: system/models.py:8
+msgid "Unit"
+msgstr ""
+
+#: system/models.py:9 system/models.py:39 templates/layout/base.html:203
+msgid "Category"
+msgstr ""
+
+#: system/models.py:10
+msgid "Purchase Price"
+msgstr ""
+
+#: system/models.py:11
+msgid "Sale Price"
+msgstr ""
+
+#: system/models.py:12
+msgid "In Stock"
+msgstr ""
+
+#: system/models.py:22 system/models.py:35 system/models.py:52
+#: system/models.py:65
+msgid "Father Name"
+msgstr ""
+
+#: system/models.py:23 system/models.py:36 system/models.py:66
+msgid "CNIC"
+msgstr ""
+
+#: system/models.py:24 system/models.py:37 system/models.py:67
+msgid "Mobile"
+msgstr ""
+
+#: system/models.py:25 system/models.py:38 system/models.py:53
+#: system/models.py:54 system/models.py:55 system/models.py:68
+msgid "Address"
+msgstr ""
+
+#: system/models.py:26
+msgid "Salary"
+msgstr ""
+
+#: system/models.py:56 system/models.py:69
+msgid "Occupation"
+msgstr ""
+
+#: system/vendor_view.py:62
+msgid "Add Vendor"
+msgstr ""
+
+#: system/vendor_view.py:76
+msgid "Vendor List"
+msgstr ""
+
+#: system/vendor_view.py:132
+msgid "Edit Vendor"
+msgstr ""
+
+#: templates/django_tables2/datatable.html:116
+msgid "previous"
+msgstr ""
+
+#: templates/django_tables2/datatable.html:136
+msgid "next"
+msgstr ""
+
+#: templates/layout/base.html:61
+msgid "Installement Sale"
+msgstr ""
+
+#: templates/layout/base.html:139
 msgid "Dashboard"
 msgstr ""
+
+#: templates/layout/base.html:175
+msgid "Reports"
+msgstr ""
+
+#: templates/layout/base.html:180
+msgid "Filter Report"
+msgstr ""
+
+#: templates/layout/base.html:184
+msgid "Setting"
+msgstr ""
+
+#: templates/layout/base.html:189 templates/layout/base.html:197
+msgid "Categories"
+msgstr ""
+
+#: templates/layout/base.html:209
+msgid "Units"
+msgstr ""
+
+#: templates/layout/base.html:234
+msgid "page_title"
+msgstr ""
+
+#: templates/layout/base.html:261
+msgid "Copyright"
+msgstr ""
+
+#: templates/layout/base.html:262
+msgid "All rights reserved."
+msgstr ""
+
+#: templates/layout/base.html:264
+msgid "Version"
+msgstr ""
+
+#: templates/layout/base.html:371
+msgid "Are you sure?"
+msgstr ""
+
+#: templates/layout/base.html:372
+msgid "Yes"
+msgstr ""
+
+#: templates/layout/base.html:373
+msgid "No"
+msgstr ""
+
+#: templates/layout/include/form_card.html:39
+#: templates/layout/include/purchase_form.html:41
+#: templates/layout/include/table_card.html:24
+msgid "Empty Card"
+msgstr ""
+
+#: templates/layout/include/info_color_card.html:12
+msgid "More info"
+msgstr ""
+
+#~ msgid "Home"
+#~ msgstr "swdsddsds"
