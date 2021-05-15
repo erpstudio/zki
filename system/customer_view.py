@@ -110,7 +110,7 @@ def show(request, id):
     page["instalments"] = {}
     page["instalments"]["type"] = "table"
     page["instalments"]["size"] = "12"
-    page["instalments"]["title"] = _("Pending Installments")
+    page["instalments"]["title"] = _("Installments")
     page["instalments"]["table"] = InstallmentScheduleTable(pending_installments)
     
     return render(request, 'layout/bootstrap.html', {"page":page})

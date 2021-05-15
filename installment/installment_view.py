@@ -44,7 +44,7 @@ class SaleEntryTable(tables.Table):
 class InstallmentScheduleTable(tables.Table):
     sale_entry__id = tables.Column(verbose_name=_('Sale ID'))
     pay_installment = tables.TemplateColumn("""
-    {% if record.sale_entry.balance == 0 %}
+    {% if record.sale_entry.balance <= 0 %}
         {% if record.paid == False %}
             <form action="{% url "installment.updateStatustoPaid" %}" method="POST">
             {% csrf_token %}
@@ -54,7 +54,7 @@ class InstallmentScheduleTable(tables.Table):
             {% else %}
             <strong class="text-success"><i class="fas fa-check"></i></strong>
         {% endif %}
-        {% else %}
+    {% else %}
         {% if record.paid == False %}
             <form class="confirm-form" action="{% url 'installment.payment' record.id %}" method="post">
                 {% csrf_token %}
@@ -206,7 +206,7 @@ def updateStatustoPaid(request):
         form = request.POST
         sale_entry = form["sale_entry"]
         print(sale_entry)
-        sch_ins = InstallmentSchedule.objects.filter(sale_entry=sale_entry).update(paid=True)
+        sch_ins = InstallmentSchedule.objects.filter(sale_entry=sale_entry).filter(paid=False).update(paid=True)
         sweetify.success(request, _('Successfull Done'), timer=2000)
         return redirect(request.META.get('HTTP_REFERER'))
         

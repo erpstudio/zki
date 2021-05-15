@@ -6,7 +6,7 @@ from system.models import AreaZone
 
 from installment.models import SaleEntry, InstallmentSchedule, ScheduledInstallmentPayment
 
-page_title = "Dashboard"
+page_title = _("Dashboard")
 # Create your views here.
 def index(request):
     sch_installment = InstallmentSchedule.objects
@@ -69,10 +69,11 @@ def index(request):
     dataset = []
     labels = []
 
-    paid_true = sch_installment.values('sale_entry__areazone__name').filter(paid=True).filter(scheduled_date=dt.date.today()).annotate(Sum('scheduledinstallmentpayment__paid_amount')).order_by('-sale_entry__areazone__name')
-    group_by_area_total = sch_installment.values('sale_entry__areazone__name').filter(scheduled_date=dt.date.today()).annotate(Sum('installment_amount')).order_by('-sale_entry__areazone__name')
+    paid_true = sch_installment.values('sale_entry__areazone__name').filter(paid=True).filter(scheduled_date=dt.date.today()).annotate(Sum('scheduledinstallmentpayment__paid_amount'))
+    group_by_area_total = sch_installment.values('sale_entry__areazone__name').filter(scheduled_date=dt.date.today()).annotate(Sum('installment_amount'))
     areas = AreaZone.objects.only('name')
-        
+    print(group_by_area_total)
+    print(paid_true)
     values_t = []
     dataset_item_r = {}
     values_r = []
@@ -81,20 +82,19 @@ def index(request):
     for area in areas:
         area = area.name
         labels.append(area)
-        print(area)
         for item in group_by_area_total:
-            print("A:",area,"f:",item["sale_entry__areazone__name"])
             if item["sale_entry__areazone__name"] == area:
                 matched = True
-                values_t.append(item["installment_amount__sum"])
+                installment_amount__sum = 0 if item["installment_amount__sum"] is None else item["installment_amount__sum"]
+                values_t.append(installment_amount__sum)
         
         if matched == False:values_t.append(0) 
         matched = False
         for item in paid_true:
-            print("A:",area,"f:",item["sale_entry__areazone__name"])
             if item["sale_entry__areazone__name"] == area:
                 matched = True
-                values_r.append(item["scheduledinstallmentpayment__paid_amount__sum"])
+                paid_amount__sum = 0 if item["scheduledinstallmentpayment__paid_amount__sum"] is None else item["scheduledinstallmentpayment__paid_amount__sum"]
+                values_r.append(paid_amount__sum)
 
         if matched == False: values_r.append(0)
         matched = False
@@ -120,5 +120,5 @@ def index(request):
     data["labels"] = labels
     data["dataset"] = dataset       
     page["recovery_by_area"]["data"] = data
-
+    
     return render(request, 'layout/bootstrap.html', {"page":page})

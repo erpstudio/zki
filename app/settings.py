@@ -128,7 +128,7 @@ LANGUAGES=(
 )
 LANGUAGE_CODE = 'ur'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Karachi'
 
 USE_I18N = True
 
