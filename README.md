@@ -17,3 +17,7 @@ Stating software language is Urdu. But Planned to add following languages
 6 - Punjabi (Pakistani)
 
 7 - Balochi
+
+## Contributer
+
+Muhammad Asif
