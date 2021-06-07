@@ -127,3 +127,11 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+
+# Text Editors in IDE
+.idea/
+
+
+# Database
+db.sqlite3
