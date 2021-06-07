@@ -1,0 +1,67 @@
+{% load static %}
+{% load i18n %}
+
+<div class="card card-primary">
+    <div class="card-body">
+        <div class="chart">
+          <canvas id="barChart" style="height:230px; min-height:230px"></canvas>
+        </div>
+    </div>
+    <!-- /.card-body -->
+</div>
+  
+
+<script src="{% static 'plugins/chart.js/Chart.min.js' %}"></script>
+
+<script>
+
+    //-------------
+    //- BAR CHART -
+    //-------------
+    var barChartCanvas = $('#barChart').get(0).getContext('2d')
+
+    var barChartOptions = {
+    tooltips: {
+      displayColors: true,
+      callbacks:{
+        mode: 'x',
+      },
+    },
+    scales: {
+      xAxes: [{
+        stacked: false,
+        gridLines: {
+          display: false,
+        }
+      }],
+      yAxes: [{
+        stacked: false,
+        ticks: {
+          beginAtZero: true,
+        },
+        type: 'linear',
+      }]
+    },
+		responsive: true,
+		maintainAspectRatio: false,
+		legend: { position: 'top' },
+	}
+
+    var barChart = new Chart(barChartCanvas, {
+      type: 'bar', 
+      data: {
+        datasets: [
+          {% for item in card.data.dataset %}
+            {
+              label : '{{ item.label }}',
+              data : {{ item.data }},
+              backgroundColor : "{{ item.backgroundColor }}"
+            },
+          {% endfor %}
+        ],
+        labels: {{ card.data.labels|safe }}
+      }, 
+      
+      options: barChartOptions
+    })
+  </script>

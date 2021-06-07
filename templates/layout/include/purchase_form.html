@@ -1,0 +1,75 @@
+{% load crispy_forms_tags %}
+{% load i18n %}
+<div class="row">
+    <div class="col-12">
+        <div class="card card-dark {% if card.status == 'hide' %} collapsed-card {% else %} show {% endif %}">
+            <div class="card-header">
+                <h3 class="card-title" style="float:right;">{{ card.title }}</h3>
+                <div class="card-tools" style="float:left;">
+                    <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                        <i class="fas {% if card.status == 'hide' %}  fa-plus {% else %} fa-minus {% endif %}"></i></button>
+                    <button type="button" class="btn btn-tool" data-card-widget="maximize"><i class="fas fa-expand"></i></button>
+                    {% for key, item in card.nav_links.items %}
+                         <a type="button" href="{% url item.link %}" class="btn btn-primary" >{{ item.label }}</a>
+                    {% endfor %}
+                </div>
+            </div>
+            <!-- card-body -->
+            <div class="card-body collapsed">
+            {% if card.form %}
+                {% if card.record_id %}
+                    <form id="formset-id" role="form" method="post" action={% url card.action id=card.record_id %}>
+                {% else %}
+                    <form id="formset-id" role="form" method="post" action={% url card.action%}>
+                {% endif %}
+                {% csrf_token %}
+                    <div class="row">
+                    {% for field in card.form %}
+                        <div class="col-sm-6">
+                            {{ field|as_crispy_field }}
+                        </div>
+                    {% endfor %}
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <button type="submit" class="btn btn-dark">{% trans "Submit" %}</button>
+                        </div>
+                    </div>
+                </form>
+                {% else %}
+                <div class="alert alert-light text-center">
+                   {% trans "Empty Card" %}
+                </div>
+            {% endif %}
+            </div>
+            <!-- /.card-body -->
+            <div class="card-footer">
+            </div>
+        </div>
+    </div>         
+</div>
+
+<script>
+
+$("#id_total_amount").attr("readonly","readonly");
+$("#id_no_of_installments").attr("readonly","readonly");
+$("#id_unit_price, #id_quantity").keyup(function(){
+    var id_unit_price = $("#id_unit_price").val();
+    var id_quantity = $("#id_quantity").val();
+    id_total_amount = id_unit_price*id_quantity;
+    $("#id_total_amount").val(id_total_amount);
+});
+
+$("#id_total_amount, #id_installment_amount, #id_unit_price, #id_quantity").keyup(function(){
+    var id_no_of_installments = 1;
+    var id_total_amount = $("#id_total_amount").val();
+    var id_installment_amount = $("#id_installment_amount").val();
+    id_no_of_installments = Math.ceil(id_total_amount/id_installment_amount);
+    if (id_no_of_installments < 1){
+        id_no_of_installments = 1;
+    }
+    $("#id_no_of_installments").val(id_no_of_installments);
+
+});
+
+</script>

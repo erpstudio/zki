@@ -1,0 +1,23 @@
+<div class="card card-primary card-outline">
+    <div class="card-body box-profile">
+      <div class="text-center">
+       
+      </div>
+
+      <h3 class="profile-username text-center">{{ card.title }}</h3>
+
+      <p class="text-muted text-center">{{ card.slogan }}</p>
+        <ul class="list-group list-group-unbordered mb-3">
+            {% for key, item in card.data.items %}
+                    <li class="list-group-item">
+                    <b> {{ key }} </b> <a class="float-right"> {{ item }} </a>
+                    </li>
+            {% endfor %}
+        </ul> 
+        {% for key, item in card.nav_links.items %}
+                <a type="button" href="{% url item.link %}" class="btn btn-primary btn-block" ><b>{{ item.label }}</b></a>
+        {% endfor %}
+      
+    </div>
+    <!-- /.card-body -->
+  </div>

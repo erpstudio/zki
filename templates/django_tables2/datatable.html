@@ -1,0 +1,146 @@
+{% load django_tables2 %}
+{% load i18n %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'datatable/dataTables.bootstrap4.min.css' %}">
+<link rel="stylesheet" href="{% static 'datatable/buttons.bootstrap.css' %}">
+<script src="{% static 'datatable/jquery.dataTables.min.js' %}"> </script>
+<script src="{% static 'datatable/dataTables.bootstrap4.js' %}"></script>
+<script src="{% static 'datatable/dataTables.buttons.js' %}"> </script>
+<script src="{% static 'datatable/buttons.bootstrap4.js' %}"> </script>
+<script src="{% static 'datatable/buttons.html5.js' %}"> </script>
+<script src="{% static 'datatable/buttons.print.min.js' %}"> </script>
+
+<script>
+$(document).ready(function() {
+  $(".datatable").DataTable({
+    aaSorting: [],
+    responsive: true,
+    "dom": '<"row"<"col-lg-3"B><"col-lg-3"f><"col-lg-3"l><"col-lg-3"p>>rtip',
+			"paging": true,
+			"autoWidth": true,
+			"buttons": [
+        'csvHtml5',
+        {
+            extend: 'print',
+                customize: function ( win ) {
+                    $(win.document.body)
+                        .css( 'font-size', '10pt' )
+                        .prepend(
+                            '<div style="position:absolute; bottom:0px; left:50%;"> {{ settings.APP_PRINT_LABEL }} </div>'
+                        );
+ 
+                    $(win.document.body).find( 'table' )
+                        .addClass( 'compact' )
+                        .css( 'font-size', 'inherit' );
+                }
+        }
+			],
+    columnDefs: [
+      {
+        responsivePriority: 1,
+        targets: 0
+      },
+      {
+        responsivePriority: 2,
+        targets: -1
+      }
+    ]
+  });
+
+  $(".dataTables_filter input")
+    .attr("placeholder", "Search here...")
+});
+
+</script>
+{% block table-wrapper %}
+    <div class="table-responsive" >
+        {% block table %}
+        <table class="table table-hover datatable">
+            {% block table.thead %}
+            <thead>
+                {% for column in table.columns %}
+                    <th {{ column.attrs.tf.as_html }}>{{ column.header }}</th>
+                {% endfor %}
+            </thead>
+            {% endblock table.thead %}
+            {% block table.tbody %}
+            <tbody {{ tbody.attrs.tbody.as_html }}>
+
+                {% for row in table.paginated_rows %}
+                    {% block table.tbody.row %}
+                    <tr {{ row.attrs.tr.as_html }}>
+                        {% for column, cell in row.items %}
+                        <td {{ cell.attrs.td.as_html }}>
+                                {{ cell }}
+                        </td>
+                        {% endfor %}
+                    </tr>
+                    {% endblock table.tbody.row %}
+                {% empty %}
+                    {% if table.empty_text %}
+                        {% block table.tbody.empty_text %}
+                            <tr><td colspan="{{ table.columns|length }}">{{ table.empty_text }}</td></tr>
+                        {% endblock table.tbody.empty_text %}
+                    {% endif %}
+                {% endfor %}
+            
+            </tbody>
+            {% endblock table.tbody %}
+
+
+
+            {% block table.tfoot %}
+                {% if table.has_footer %}
+                    <tfoot {{ table.attrs.tfoot.as_html }}>
+                    <tr class="table-active">
+                        {% for column in table.columns %}
+                            <th {{ column.attrs.tf.as_html }}>{{ column.footer }}</th>
+                        {% endfor %}
+                    </tr>
+                    </tfoot>
+                {% endif %}
+            {% endblock table.tfoot %}
+        
+        </table>
+        {% endblock table %}
+</div>
+        {% block pagination %}
+            {% if table.page and table.paginator.num_pages > 1 %}
+                <nav aria-label="Table navigation">
+                    <ul class="pagination justify-content-center">
+                        {% if table.page.has_previous %}
+                            {% block pagination.previous %}
+                                <li class="previous page-item">
+                                    <a href="{% querystring table.prefixed_page_field=table.page.previous_page_number %}" class="page-link">
+                                        <span aria-hidden="true">&laquo;</span>
+                                        {% trans 'previous' %}
+                                    </a>
+                                </li>
+                            {% endblock pagination.previous %}
+                        {% endif %}
+                        {% if table.page.has_previous or table.page.has_next %}
+                            {% block pagination.range %}
+                                {% for p in table.page|table_page_range:table.paginator %}
+                                    <li class="page-item{% if table.page.number == p %} active{% endif %}">
+                                        <a class="page-link" {% if p != '...' %}href="{% querystring table.prefixed_page_field=p %}"{% endif %}>
+                                            {{ p }}
+                                        </a>
+                                    </li>
+                                {% endfor %}
+                            {% endblock pagination.range %}
+                        {% endif %}
+                        {% if table.page.has_next %}
+                            {% block pagination.next %}
+                                <li class="next page-item">
+                                    <a href="{% querystring table.prefixed_page_field=table.page.next_page_number %}" class="page-link">
+                                        {% trans 'next' %}
+                                        <span aria-hidden="true">&raquo;</span>
+                                    </a>
+                                </li>
+                            {% endblock pagination.next %}
+                        {% endif %}
+                    </ul>
+                </nav>
+            {% endif %}
+        {% endblock pagination %}
+{% endblock table-wrapper %}

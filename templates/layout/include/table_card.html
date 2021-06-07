@@ -1,0 +1,33 @@
+{% load crispy_forms_tags %}
+{% load i18n %}
+{% load render_table from django_tables2 %}
+
+        <div class="card card-dark {% if card.status == 'hide' %} collapsed-card {% else %} show  {% endif %}" id="dvContents">
+            <div class="card-header">
+                <h3 class="card-title" id="table_card_title" style="float:right;">{{ card.title }}</h3>
+                <div class="card-tools" style="float:left;">
+                    <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas {% if card.status == 'hide' %}  fa-plus {% else %} fa-minus {% endif %}"></i></button>
+                    <button type="button" class="btn btn-tool" data-card-widget="maximize"><i class="fas fa-expand"></i></button>
+                    {% comment %} <button type="button" id="btnPrint" class="btn btn-tool"><i class="fas fa-print"></i></button> {% endcomment %}
+                    {% for key, item in card.nav_links.items %}
+                         <a type="button" href="{% url item.link %}" class="btn btn-primary" >{{ item.label }}</a>
+                    {% endfor %}
+                </div>
+            </div>
+            <!-- card-body -->
+            <div class="card-body">
+            {% if card.table %}
+                {% render_table card.table %}
+                {% else %}
+                <div class="alert alert-light text-center">
+                   {% trans "Empty Card" %}
+                </div>
+            {% endif %}
+            </div>
+            <!-- /.card-body -->
+        </div>
+
+<script>
+var title = $("#table_card_title").text();
+document.title = title;
+</script>

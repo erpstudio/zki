@@ -1,0 +1,42 @@
+{% extends 'layout/base.html' %}
+{% load i18n %}
+
+{% block page_title %}
+{{ page.page_title }}
+{% endblock page_title %}
+
+{% block nav_links %}
+    {% for key, item in page.nav_links.items %}
+        {% comment %} {% with url_news as url 'inventory.list' %}{% endwith %} {% endcomment %}
+        {% url item.link as link_url %}
+            <a type="button" href="{% url item.link %}" class="btn btn-primary {% if request.path == link_url  %}disabled{% endif %}" >{{ item.label }}</a>
+    {% endfor %}
+{% endblock nav_links %}
+
+{% block content %}
+
+<div class="row">
+{% for key, item in page.items %}
+    <div class="col-sm-{{ item.size|default:12 }}">
+    {% if item.template %}
+                {% include item.template with card=item %}
+    {% else %}
+    
+        {% if item.type == "form" and item.status != "disable" %}
+            {% include 'layout/include/form_card.html' with card=item %}
+        {% endif %}
+        {% if item.type == "table" and item.status != "disable" %}
+            {% include 'layout/include/table_card.html' with card=item %}
+        {% endif %}
+        {% if item.type == "profile" and item.status != "disable" %}
+            {% include 'layout/include/profile_card.html' with card=item %}
+        {% endif %}
+    
+    {% endif %}
+    </div>
+
+{% endfor %}
+</div> 
+
+
+{% endblock content %}
