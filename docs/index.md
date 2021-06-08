@@ -30,5 +30,8 @@ Muhammad Asif - Developer
 
 Hafiz Muhammad Abubakar - Deployment
 
-Umair Iftikhar - Product Manager
+Muhammad Saim - Business Development
 
+Zulqurnain Haider - Strategy and Paloicy
+
+Umair Iftikhar - Product Manager
