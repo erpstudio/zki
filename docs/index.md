@@ -28,4 +28,7 @@ Stating software language is Urdu. But Planned to add following languages
 
 Muhammad Asif - Developer
 
+Hafiz Muhammad Abubakar - Deployment
+
 Umair Iftikhar - Product Manager
+
