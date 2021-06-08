@@ -26,12 +26,12 @@ Stating software language is Urdu. But Planned to add following languages
 
 ## Contributer
 
-Muhammad Asif - Developer
+Muhammad Asif - Developer - CTO
 
 Hafiz Muhammad Abubakar - Deployment
 
 Muhammad Saim - Business Development
 
-Zulqurnain Haider - Strategy and Paloicy
+Zulqurnain Haider - Strategy and Policy
 
-Umair Iftikhar - Product Manager
+Umair Iftikhar - Product Manager - CEO
