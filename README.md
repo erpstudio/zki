@@ -1,3 +1,7 @@
+## ZedKeen Instalments
+
+![Image](https://raw.githubusercontent.com/erpstudio/zki/documentation/docs/images/zk_logo.jpg)
+
 # ZKI - ZedKeen Inside
 
 Open Source POS Software for Installment Companies in Pakistan. Software is designed for Pakistani and Middle East Markeet. 
@@ -22,4 +26,12 @@ Stating software language is Urdu. But Planned to add following languages
 
 ## Contributer
 
-Muhammad Asif
+Muhammad Asif - Developer - CTO  ERP Studio
+
+Hafiz Muhammad Abubakar - Deployment
+
+Muhammad Saim - Business Development
+
+Zulqurnain Haider - Strategy and Policy
+
+Umair Iftikhar - Product Manager - CEO  ERP Studio
