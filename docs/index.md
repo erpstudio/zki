@@ -26,7 +26,7 @@ Stating software language is Urdu. But Planned to add following languages
 
 ## Contributer
 
-Muhammad Asif - Developer - CTO
+Muhammad Asif - Developer - CTO  ERP Studio
 
 Hafiz Muhammad Abubakar - Deployment
 
@@ -34,4 +34,4 @@ Muhammad Saim - Business Development
 
 Zulqurnain Haider - Strategy and Policy
 
-Umair Iftikhar - Product Manager - CEO
+Umair Iftikhar - Product Manager - CEO  ERP Studio
