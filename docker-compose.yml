@@ -1,0 +1,26 @@
+version: "3.9"
+   
+services:
+  db:
+    image: postgres
+    volumes:
+      - ./data/db:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+  web:
+    build: .
+    command: python3 manage.py makemigrations installment
+    command: python3 manage.py makemigrations purchase
+    command: python3 manage.py makemigrations settings
+    command: python3 manage.py makemigrations system
+    command: python3 manage.py migrate
+    command: python3 manage.py runserver 0.0.0.0:8000
+    
+    volumes:
+      - .:/code
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
