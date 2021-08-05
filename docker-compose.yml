@@ -10,13 +10,17 @@ services:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
   web:
-    build: .
-    command: python3 manage.py makemigrations installment
-    command: python3 manage.py makemigrations purchase
-    command: python3 manage.py makemigrations settings
-    command: python3 manage.py makemigrations system
-    command: python3 manage.py migrate
-    command: python3 manage.py runserver 0.0.0.0:8000
+    build:
+      context: .
+    command: >
+      sh -c "python manage.py makemigrations installment &&
+      python manage.py makemigrations purchase &&
+      python manage.py makemigrations settings &&
+      python manage.py makemigrations system &&
+      python manage.py migrate &&
+      python manage.py runserver 0.0.0.0:8000"
+  
+    
     
     volumes:
       - .:/code
