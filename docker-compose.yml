@@ -12,24 +12,13 @@ services:
   web:
     build:
       context: .
-      command:
-        - bash
-        - -c
-        - >
-          apt-get update;
-          apt-get install git -y;
-          ssh-keyscan -t rsa github.com > ~/.ssh/known_hosts;
-          git clone https://github.com/erpstudio/zki.git;
-      command: >
-      sh -c "python manage.py makemigrations installment &&
+    command: >
+      bash -c "python manage.py makemigrations installment &&
       python manage.py makemigrations purchase &&
       python manage.py makemigrations settings &&
       python manage.py makemigrations system &&
       python manage.py migrate &&
       python manage.py runserver 0.0.0.0:8000"
-  
-    
-    
     volumes:
       - .:/code
     ports:
