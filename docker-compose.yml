@@ -1,5 +1,5 @@
 version: "3.9"
-   
+version: "3.0"
 services:
   db:
     image: postgres
@@ -12,7 +12,7 @@ services:
   web:
     build:
       context: .
-    command: >
+    command:
       sh -c "python manage.py makemigrations installment &&
       python manage.py makemigrations purchase &&
       python manage.py makemigrations settings &&
