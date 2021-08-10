@@ -23,3 +23,5 @@ Stating software language is Urdu. But Planned to add following languages
 ## Contributer
 
 Muhammad Asif
+
+Muhammad Abubakar
