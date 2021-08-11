@@ -24,4 +24,4 @@ Stating software language is Urdu. But Planned to add following languages
 
 Muhammad Asif
 
-Muhammad Abubakar
+Hafiz Muhammad Abubakar
