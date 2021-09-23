@@ -14,7 +14,7 @@
 # How to run this software:
 
 
-    Download the bash file from  Github:  [a link](https://github.com/erpstudio/zki). 
+    Download the bash file from  Github:  https://github.com/erpstudio/zki. 
 erpstudio/zki: ZedKeen Inside Software, The open-source software made for Pakistan and Middle East Markets.. 
 
 
@@ -38,6 +38,7 @@ This will execute all the programmes. Access your software from localhost:8080  
 
 
 Visualiser page:
+
 
 
 
